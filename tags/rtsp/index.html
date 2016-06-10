@@ -87,7 +87,7 @@
 <meta name="description" content="好记性不如烂笔头">
 <meta property="og:type" content="website">
 <meta property="og:title" content="GeekMonKey's Blog">
-<meta property="og:url" content="http://ymhou.github.com/index.html">
+<meta property="og:url" content="http://ymhou.github.com/tags/rtsp/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
 <meta property="og:description" content="好记性不如烂笔头">
 <meta name="twitter:card" content="summary">
@@ -110,7 +110,7 @@
   };
 </script>
 
-  <title> GeekMonKey's Blog </title>
+  <title> 标签: rtsp | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +131,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -210,266 +208,45 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/10/rtsp-haikang-Ip-camare/" itemprop="url">
-                  使用rtsp协议访问海康IP摄像头
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-10T11:08:02+08:00" content="2016-06-10">
-              2016-06-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/10/rtsp-haikang-Ip-camare/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/10/rtsp-haikang-Ip-camare/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>前段时间做<code>3S</code>比赛的时候涉及到在安卓端调用实验室海康威视摄像头进行实时的视频监控，苦于海康官网没有提供安卓端的SDK，只好硬着头皮在网上大海捞针般的开始查找，倒是找到了一些反编译出来的SDK，包括相应的网络库SDK和播放库SDK，还提供相应的demo，然而遗憾的是并没把这些成功跑起来。       </p>
-<p>那就另辟蹊径吧。在网上查阅资料和大牛们的博客的时候发现最新的海康IP摄像头是支持rtsp协议进行流媒体播放的，翻阅了下实验室采购的摄像头的技术手册，完全没有问题，最终的技术方案就是在安卓端采用<code>videoview</code>调用基于rtsp协议的流媒体地址进行播放，实现移动端实时视频监控的效果。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>海康威视IP摄像头rtsp协议地址如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rtsp://[username]:[passwd]@[ip]:[port]/[codec]/[channel]/[subtype]/av_stream</span><br></pre></td></tr></table></figure></p>
-<p>说明：<br>username：用户名，例如admin<br>passwd：密码，例如12345<br>ip：设备的ip地址，例如192.0.0.64<br>port：端口号默认554，若为默认可以不写<br>codec：有h264、MPEG-4、mpeg4这几种<br>channel：通道号，起始为1<br>subtype：码流类型，主码流为main,子码流为sub       </p>
-<p>例如，请求海康IP摄像机通道1的码流，url如下：<br>主码流：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rtsp://admin:12345@192.0.0.64:554/h264/ch1/main/av_stream</span><br><span class="line">rtsp://admin:12345@192.0.0.64:554/MPEG-4/ch1/main/av_stream</span><br></pre></td></tr></table></figure></p>
-<p>子码流：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rtsp://admin:12345@192.0.0.64/mpeg4/ch1/sub/av_stream</span><br><span class="line">rtsp://admin:12345@192.0.0.64/h264/ch1/sub/av_stream</span><br></pre></td></tr></table></figure></p>
-<h2 id="rtsp流测试"><a href="#rtsp流测试" class="headerlink" title="rtsp流测试"></a>rtsp流测试</h2><p>基于rtsp协议的码流确定好之后，我们可以用流媒体播放器对视频地址进行测试，这里推荐使用<code>VLC media player</code>,功能相当强大而且跨平台，最重要的是它还是开源的，是一款浑身闪耀着牛X气息的播放器。</p>
-<ol>
-<li>打开VLC播放器，选择<code>打开网络串流</code><br><img src="http://7xn8bp.com1.z0.glb.clouddn.com/1.png" alt=""></li>
-<li>在网络URL中输入码流地址<br><img src="http://7xn8bp.com1.z0.glb.clouddn.com/3.png" alt=""></li>
-<li>播放效果如下<br><img src="http://7xn8bp.com1.z0.glb.clouddn.com/2.png" alt=""></li>
-</ol>
-
-          
-        
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        rtsp
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
       
 
-  
-  
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/06/10/rtsp-haikang-Ip-camare/" itemprop="url">
               
-                
-                <a class="post-title-link" href="/2016/06/08/Hello-World/" itemprop="url">
-                  Hello,World!
-                </a>
+                <span itemprop="name">使用rtsp协议访问海康IP摄像头</span>
               
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-08T16:33:12+08:00" content="2016-06-08">
-              2016-06-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/08/Hello-World/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/08/Hello-World/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://7xv676.com1.z0.glb.clouddn.com/smile.jpg" alt="smile"></p>
-<h2 id="写在之前"><a href="#写在之前" class="headerlink" title="写在之前"></a>写在之前</h2><blockquote class="blockquote-center"><p>Hello World! </p>
-</blockquote>
-<p>Hello World！你好世界！经过几天的学习，折腾来折腾去终于把基于<code>github pages+HEXO</code>的博客搭建好了，第一篇呢就随便写写吧，算是立一个简简单单的时间flag。    </p>
-<p>事出有因，本博客的搭建其实是学习<code>Git</code>后的一个简单的实践，因为我之前的博客是部署在阿里云上的（<em>记得当时还是阿里云做活动，微博转发送了一个2年的免费空间，于是用Wordpress在上面搭建了一个博客，域名用的是<code>电子学社</code>的二级域名<code>geekmonkey.dzxs-dl.com</code>以及在<code>freenom</code>网站上申请的免费顶级域名<code>geekmonkey.ml</code></em>），博客起名为<a href="geekmonkey.dzxs-dl.com">极客猴儿</a>。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/08/Hello-World/#more" rel="contents">
-              阅读全文 &raquo;
             </a>
-          </div>
         
-      
-    </div>
+      </h1>
 
-    <div>
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-06-10T11:08:02+08:00"
+              content="2016-06-10" >
+          06-10
+        </time>
+      </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </header>
   </article>
 
 
     
-  </section>
+  </div>
 
   
 
