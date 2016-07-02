@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702140435.png">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702140546.png">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702141322.png">
-<meta property="og:updated_time" content="2016-07-02T06:35:40.884Z">
+<meta property="og:updated_time" content="2016-07-02T06:41:57.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebApi中使用 Asp.Net Identity 进行身份认证">
 <meta name="twitter:description" content="最近，在整理3S比赛项目代码的时候，和老师讨论到数据库安全的问题，之前写的WebApi服务是没有加任何验证的，也就是说，任何人只要知道了接口的url，都能够模拟http请求去访问我们的服务接口，在该项目中仅仅写了get方法，可以匿名获取到数据。再加上put、deleta、post方法即可去增删改查数据库，在实际项目的应用过程中是不可取的。
@@ -310,7 +310,7 @@
         <p>最近，在整理<code>3S比赛</code>项目代码的时候，和老师讨论到数据库安全的问题，之前写的WebApi服务是没有加任何验证的，也就是说，任何人只要知道了接口的url，都能够模拟http请求去访问我们的服务接口，在该项目中仅仅写了<code>get</code>方法，可以匿名获取到数据。再加上<code>put</code>、<code>deleta</code>、<code>post</code>方法即可去增删改查数据库，在实际项目的应用过程中是不可取的。</p>
 <p>由于之前<code>3S</code>项目的数据都是模拟数据，不是工业现场的真实数据，写一个简单的演示demo其WebApi不加任何验证也没什么不妥，不过最近实验室要给山西的氧化铝工厂做一个生产过程移动监控的APP，设计到工业数据的安全性问题，需要解决WebApi的身份验证问题。经过简单的了解学习，<code>Asp.Net Identity</code>的引入为Asp.Net应用程序提供了一套统一的身份验证机制。</p>
 <h2 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h2><p>这是一张Identity官方教程的图，认证的流程如下：</p>
-<p><img src="http://7xv676.com1.z0.glb.clouddn.com/working-with-web-api-and-asp-net-identity-1.png" alt=""></p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/working-with-web-api-and-asp-net-identity-1.png" alt=""><br><a id="more"></a></p>
 <p>1.用户在客户端中输入账户和密码；<br>2.客户端将账户密码发送到授权服务器中；<br>3.授权服务器根据用户信息来生成一个<code>token</code>；<br>4.客户端在http请求头中携带<code>token</code>访问受限资源.      </p>
 <h2 id="创建解决方案"><a href="#创建解决方案" class="headerlink" title="创建解决方案"></a>创建解决方案</h2><p>1.使用Visual Studio（博主用的是VS2013）创建一个WebApi项目；<br>2.更改身份验证，选择“个人用户账户”。</p>
 <p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702135959.png" alt=""></p>
