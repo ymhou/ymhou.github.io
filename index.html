@@ -233,6 +233,159 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/02/WebApi-use-Asp-Net-Identity/" itemprop="url">
+                  WebApi中使用 Asp.Net Identity 进行身份认证
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-02T14:29:29+08:00" content="2016-07-02">
+              2016-07-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/02/WebApi-use-Asp-Net-Identity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/02/WebApi-use-Asp-Net-Identity/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近，在整理<code>3S比赛</code>项目代码的时候，和老师讨论到数据库安全的问题，之前写的WebApi服务是没有加任何验证的，也就是说，任何人只要知道了接口的url，都能够模拟http请求去访问我们的服务接口，在该项目中仅仅写了<code>get</code>方法，可以匿名获取到数据。再加上<code>put</code>、<code>deleta</code>、<code>post</code>方法即可去增删改查数据库，在实际项目的应用过程中是不可取的。</p>
+<p>由于之前<code>3S</code>项目的数据都是模拟数据，不是工业现场的真实数据，写一个简单的演示demo其WebApi不加任何验证也没什么不妥，不过最近实验室要给山西的氧化铝工厂做一个生产过程移动监控的APP，设计到工业数据的安全性问题，需要解决WebApi的身份验证问题。经过简单的了解学习，<code>Asp.Net Identity</code>的引入为Asp.Net应用程序提供了一套统一的身份验证机制。</p>
+<h2 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h2><p>这是一张Identity官方教程的图，认证的流程如下：</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/working-with-web-api-and-asp-net-identity-1.png" alt=""></p>
+<p>1.用户在客户端中输入账户和密码；<br>2.客户端将账户密码发送到授权服务器中；<br>3.授权服务器根据用户信息来生成一个<code>token</code>；<br>4.客户端在http请求头中携带<code>token</code>访问受限资源.      </p>
+<h2 id="创建解决方案"><a href="#创建解决方案" class="headerlink" title="创建解决方案"></a>创建解决方案</h2><p>1.使用Visual Studio（博主用的是VS2013）创建一个WebApi项目；<br>2.更改身份验证，选择“个人用户账户”。</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702135959.png" alt=""></p>
+<p>如果此时不进行身份注册认证直接采用匿名方式模拟http请求去访问我们的服务接口，发现是无法访问的。</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702141337.png" alt=""></p>
+<h2 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h2><p>默认的 WebApi 模板中，已经为我们创建了一些常用的 api 了，比如注册：</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702140435.png" alt=""></p>
+<h2 id="获取Token"><a href="#获取Token" class="headerlink" title="获取Token"></a>获取Token</h2><p>使用刚刚注册好的账户和密码，发出如下请求：</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702140546.png" alt=""></p>
+<p>返回请求的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;access_token&quot;: &quot;c_-F2k8exhBRc3FV8WQvU6ga796TXOSZhHDNn9-JzDYeTbJ3Zctf3AGXd53yoQdNoruJPetMqqQOKzyqR1t3YSplLxreDiQgNCCueZ5AsGP7PVLvaBe3s_5M0FZ8H-0pnLt0mW2QH5sB7DJ7zMuesQJ0q5euvfuK4VuYMkQ1vN_BHr0WHg9M4X7lPVU9D9tbP9M9tjQoyblx4-8_wjjpFYUSlwYgdWDoAQwhRSdWENWtmP2_D3iYPpxqSrrwsdud3XYMPCjMXI-vrcuu_OWDcBPKFBYmu8_Hfo21uC_1G7ZvYq0YhcJSa28lMA4a4dx_1gW1l9SD86VuMv6NbZ5Da5h1X0y2ETO2Pv26U-4Lfs6OjycvwYyBH4Pul5vDMQO0BNVkQaQLxloav6JlNPSCbIdnMssHxNuuP778u5-yddbl58KuL4FI1JdfmSq9_Kg08YjkjfauQKUgu5LBcB778A0mQqyTOMzUdRqz_ZRbw9c&quot;,</span><br><span class="line">  &quot;token_type&quot;: &quot;bearer&quot;,</span><br><span class="line">  &quot;expires_in&quot;: 1209599,</span><br><span class="line">  &quot;userName&quot;: &quot;1@qq.com&quot;,</span><br><span class="line">  &quot;.issued&quot;: &quot;Sat, 02 Jul 2016 06:05:34 GMT&quot;,</span><br><span class="line">  &quot;.expires&quot;: &quot;Sat, 16 Jul 2016 06:05:34 GMT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，<code>access_token</code>, <code>token_type</code>, <code>expires_in</code> 属性是 <code>OAuth2</code> 协议中定义的属性；其他属性是可以自定义的，可以在 <code>ApplicationOAuthProvider</code> 的 <code>TokenEndpoint</code> 方法中进行自定义操作.</p>
+<h2 id="访问收限制资源"><a href="#访问收限制资源" class="headerlink" title="访问收限制资源"></a>访问收限制资源</h2><p>将获取的的 access_token 值放到 http 的请求中，生成如下请求，进行对受限资源的访问：</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702141322.png" alt=""></p>
+<h2 id="Webapi的认证"><a href="#Webapi的认证" class="headerlink" title="Webapi的认证"></a>Webapi的认证</h2><h3 id="StartUp"><a href="#StartUp" class="headerlink" title="StartUp"></a>StartUp</h3><p>默认的 <code>Startup.Auth.cs</code> 文件中，启用了三种身份认证的方式，<code>Asp.Net Identity</code> 集成了 <code>Owin</code> 可以使用<code>app.UserXXX</code> 使用所需要的认证方式.</p>
+<ol>
+<li>使用基于 Cookie 的传统表单验证；</li>
+<li>使用第三方扩展登录；</li>
+<li>使用基于 BearerToken 的登录方式，这也是本使用的方式；（ BearerToken 与常见的第三方 Oauth 方式类似，但这是一种不记名的方式，也就是客户端无需提供 ClientId，ClientSecret）</li>
+</ol>
+<h3 id="OAuthBearerTokens"><a href="#OAuthBearerTokens" class="headerlink" title="OAuthBearerTokens"></a>OAuthBearerTokens</h3><p>构造函数中 <code>OAuthAuthorizationServerOptions</code> 提供了一下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 针对基于 OAuth 的流配置应用程序</span><br><span class="line">            PublicClientId = &quot;self&quot;;</span><br><span class="line">            OAuthOptions = new OAuthAuthorizationServerOptions</span><br><span class="line">            &#123;</span><br><span class="line">                TokenEndpointPath = new PathString(&quot;/Token&quot;),</span><br><span class="line">                Provider = new ApplicationOAuthProvider(PublicClientId),</span><br><span class="line">                AuthorizeEndpointPath = new PathString(&quot;/api/Account/ExternalLogin&quot;),</span><br><span class="line">                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),</span><br><span class="line">                //在生产模式下设 AllowInsecureHttp = false</span><br><span class="line">                AllowInsecureHttp = true</span><br><span class="line">            &#125;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>生成 token 的地址为：<a href="http://localhost:port/token；" target="_blank" rel="external">http://localhost:port/token；</a></li>
+<li>为 token 设置了失效时间为14天，失效后，再次访问受限的请求时为得到未授权的相应.</li>
+</ol>
+<h2 id="关于Bearer-Token"><a href="#关于Bearer-Token" class="headerlink" title="关于Bearer Token"></a>关于Bearer Token</h2><p>token 是在服务器上生成，并加密，然后再发送到客户端；客户端访问受限资源时需要将 token 发送到服务器端，服务器端再将 token 进行解密；对于客户端来说这个 token 是无法被破解的； 对于服务器来说，token 就是一个用户的唯一标识符，任何人只要拥有了 token，就能获取用户的权限。</p>
+<p>所以对于安全需求高的场景，为防止 token 被劫持，请对 api 的请求用 SSL/TSL 对 http 进行加密。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p><a href="http://blog.wangtuyao.com/post/2014/4/9/owin-authentication-middleware" target="_blank" rel="external">http://blog.wangtuyao.com/post/2014/4/9/owin-authentication-middleware</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/21/OSC-2016-shenyang/" itemprop="url">
                   2016沈阳OSC源创会小记
                 </a>
@@ -624,7 +777,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -641,7 +794,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
