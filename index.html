@@ -318,7 +318,7 @@
 <p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702140546.png" alt=""></p>
 <p>返回请求的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;access_token&quot;: &quot;c_-F2k8exhBRc3FV8WQvU6ga796TXOSZhHDNn9-JzDYeTbJ3Zctf3AGXd53yoQdNoruJPetMqqQOKzyqR1t3YSplLxreDiQgNCCueZ5AsGP7PVLvaBe3s_5M0FZ8H-0pnLt0mW2QH5sB7DJ7zMuesQJ0q5euvfuK4VuYMkQ1vN_BHr0WHg9M4X7lPVU9D9tbP9M9tjQoyblx4-8_wjjpFYUSlwYgdWDoAQwhRSdWENWtmP2_D3iYPpxqSrrwsdud3XYMPCjMXI-vrcuu_OWDcBPKFBYmu8_Hfo21uC_1G7ZvYq0YhcJSa28lMA4a4dx_1gW1l9SD86VuMv6NbZ5Da5h1X0y2ETO2Pv26U-4Lfs6OjycvwYyBH4Pul5vDMQO0BNVkQaQLxloav6JlNPSCbIdnMssHxNuuP778u5-yddbl58KuL4FI1JdfmSq9_Kg08YjkjfauQKUgu5LBcB778A0mQqyTOMzUdRqz_ZRbw9c&quot;,</span><br><span class="line">  &quot;token_type&quot;: &quot;bearer&quot;,</span><br><span class="line">  &quot;expires_in&quot;: 1209599,</span><br><span class="line">  &quot;userName&quot;: &quot;1@qq.com&quot;,</span><br><span class="line">  &quot;.issued&quot;: &quot;Sat, 02 Jul 2016 06:05:34 GMT&quot;,</span><br><span class="line">  &quot;.expires&quot;: &quot;Sat, 16 Jul 2016 06:05:34 GMT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其中，<code>access_token</code>, <code>token_type</code>, <code>expires_in</code> 属性是 <code>OAuth2</code> 协议中定义的属性；其他属性是可以自定义的，可以在 <code>ApplicationOAuthProvider</code> 的 <code>TokenEndpoint</code> 方法中进行自定义操作.</p>
-<h2 id="访问收限制资源"><a href="#访问收限制资源" class="headerlink" title="访问收限制资源"></a>访问收限制资源</h2><p>将获取的的 access_token 值放到 http 的请求中，生成如下请求，进行对受限资源的访问：</p>
+<h2 id="访问受限制资源"><a href="#访问受限制资源" class="headerlink" title="访问受限制资源"></a>访问受限制资源</h2><p>将获取的的 access_token 值放到 http 的请求中，生成如下请求，进行对受限资源的访问：</p>
 <p><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702141322.png" alt=""></p>
 <h2 id="Webapi的认证"><a href="#Webapi的认证" class="headerlink" title="Webapi的认证"></a>Webapi的认证</h2><h3 id="StartUp"><a href="#StartUp" class="headerlink" title="StartUp"></a>StartUp</h3><p>默认的 <code>Startup.Auth.cs</code> 文件中，启用了三种身份认证的方式，<code>Asp.Net Identity</code> 集成了 <code>Owin</code> 可以使用<code>app.UserXXX</code> 使用所需要的认证方式.</p>
 <ol>
@@ -335,7 +335,7 @@
 <h2 id="关于Bearer-Token"><a href="#关于Bearer-Token" class="headerlink" title="关于Bearer Token"></a>关于Bearer Token</h2><p>token 是在服务器上生成，并加密，然后再发送到客户端；客户端访问受限资源时需要将 token 发送到服务器端，服务器端再将 token 进行解密；对于客户端来说这个 token 是无法被破解的； 对于服务器来说，token 就是一个用户的唯一标识符，任何人只要拥有了 token，就能获取用户的权限。</p>
 <p>所以对于安全需求高的场景，为防止 token 被劫持，请对 api 的请求用 SSL/TSL 对 http 进行加密。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
-<p><a href="http://blog.wangtuyao.com/post/2014/4/9/owin-authentication-middleware" target="_blank" rel="external">http://blog.wangtuyao.com/post/2014/4/9/owin-authentication-middleware</a></p>
+<p><a href="http://blog.wangtuyao.com/post/2014/10/29/working-with-web-api-and-asp-net-identity.html" target="_blank" rel="external">http://blog.wangtuyao.com/post/2014/10/29/working-with-web-api-and-asp-net-identity.html</a></p>
 </blockquote>
 
           
