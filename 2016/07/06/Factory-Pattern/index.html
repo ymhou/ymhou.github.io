@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="极客猴儿, GeekMonkey" />
+  <meta name="keywords" content="工厂模式," />
 
 
 
@@ -84,15 +84,40 @@
 
 
 
-<meta name="description" content="好记性不如烂笔头">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GeekMonKey's Blog">
-<meta property="og:url" content="http://ymhou.github.com/index.html">
+<meta name="description" content="一, 简单工厂模式:
+突然有一天，在梦里拥有了阿拉丁神灯. 
+灯神说: “我可以给你创造一个女朋友哦” 
+这时候我的心里…嘿嘿嘿…
+“但是只能满足你一个地理条件，目前只有三个选项: 四川, 河北, 山东. 你挑一个? “ 灯神又说.
+“那我选: 四川…或者…” 
+没等我说完，嘭的一下，出来个一个火辣的川妹子…
+
+用代码来展示就是:123456// 神灯拥有的三种选项public enum GFTy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单工厂模式，工厂模式，抽象工厂模式">
+<meta property="og:url" content="http://ymhou.github.com/2016/07/06/Factory-Pattern/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="好记性不如烂笔头">
+<meta property="og:description" content="一, 简单工厂模式:
+突然有一天，在梦里拥有了阿拉丁神灯. 
+灯神说: “我可以给你创造一个女朋友哦” 
+这时候我的心里…嘿嘿嘿…
+“但是只能满足你一个地理条件，目前只有三个选项: 四川, 河北, 山东. 你挑一个? “ 灯神又说.
+“那我选: 四川…或者…” 
+没等我说完，嘭的一下，出来个一个火辣的川妹子…
+
+用代码来展示就是:123456// 神灯拥有的三种选项public enum GFTy">
+<meta property="og:updated_time" content="2016-07-06T10:50:55.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GeekMonKey's Blog">
-<meta name="twitter:description" content="好记性不如烂笔头">
+<meta name="twitter:title" content="简单工厂模式，工厂模式，抽象工厂模式">
+<meta name="twitter:description" content="一, 简单工厂模式:
+突然有一天，在梦里拥有了阿拉丁神灯. 
+灯神说: “我可以给你创造一个女朋友哦” 
+这时候我的心里…嘿嘿嘿…
+“但是只能满足你一个地理条件，目前只有三个选项: 四川, 河北, 山东. 你挑一个? “ 灯神又说.
+“那我选: 四川…或者…” 
+没等我说完，嘭的一下，出来个一个火辣的川妹子…
+
+用代码来展示就是:123456// 神灯拥有的三种选项public enum GFTy">
 
 
 
@@ -110,7 +135,7 @@
   };
 </script>
 
-  <title> GeekMonKey's Blog </title>
+  <title> 简单工厂模式，工厂模式，抽象工厂模式 | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +156,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -250,9 +273,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -272,10 +295,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/07/06/Factory-Pattern/" itemprop="url">
-                  简单工厂模式，工厂模式，抽象工厂模式
-                </a>
+                简单工厂模式，工厂模式，抽象工厂模式
               
             
           </h1>
@@ -341,9 +361,7 @@
       
 
       
-        
-          
-            <h2 id="一-简单工厂模式"><a href="#一-简单工厂模式" class="headerlink" title="一, 简单工厂模式:"></a>一, 简单工厂模式:</h2><ul>
+        <h2 id="一-简单工厂模式"><a href="#一-简单工厂模式" class="headerlink" title="一, 简单工厂模式:"></a>一, 简单工厂模式:</h2><ul>
 <li>突然有一天，在梦里拥有了阿拉丁神灯. </li>
 <li>灯神说: “我可以给你创造一个女朋友哦” </li>
 <li>这时候我的心里…嘿嘿嘿…</li>
@@ -395,532 +413,82 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 我们又一次找到了神灯，满意了吧</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">      public static void main(String[] args) &#123;</span><br><span class="line">            IGFFactory yunNanGFFactory = new YunNanGFFactory();</span><br><span class="line">            BaseGF yunNanGF = yunNanGFFactory.createGF();</span><br><span class="line">            yunNanGF.eatFood();</span><br><span class="line">            yunNanGF.shopping();</span><br><span class="line">            </span><br><span class="line">            IGFFather yunNanGFFather = yunNanGFFactory.createGFFather();</span><br><span class="line">            yunNanGFFather.suggestionToGirl();</span><br><span class="line">            </span><br><span class="line">//          IGFFactory siChuanGFFactory = new SiChuanGFFactory();</span><br><span class="line">//          BaseGF siChuanGF = siChuanGFFactory.createGF();</span><br><span class="line">//          siChuanGF.eatFood();</span><br><span class="line">//          siChuanGF.shopping();</span><br><span class="line">//          </span><br><span class="line">//          IGFFather siChuanGFFather = siChuanGFFactory.createGFFather();</span><br><span class="line">//          siChuanGFFather.suggestionToGirl();</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 结果是这样滴...</span><br><span class="line">Eat 牛干巴, 炸土豆, 小锅米线, 卤米线...</span><br><span class="line">Go shopping every day...</span><br><span class="line">Silence ...</span><br><span class="line">// Eat sichuan food...</span><br><span class="line">// Go shopping every day...</span><br><span class="line">// Agree ...</span><br></pre></td></tr></table></figure>
 <h6 id="就这样，我和我的云南妹子去见了她父母，然后过上了幸福的生活"><a href="#就这样，我和我的云南妹子去见了她父母，然后过上了幸福的生活" class="headerlink" title="就这样，我和我的云南妹子去见了她父母，然后过上了幸福的生活."></a>就这样，我和我的云南妹子去见了她父母，然后过上了幸福的生活.</h6><p><a href="http://www.jianshu.com/p/3f824a91d73b" target="_blank" rel="external">转载自简书</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://7xv676.com1.z0.glb.clouddn.com/1465308808.png" alt="GeekMonKey WeChat Pay"/>
+          <p>订阅我的博客</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xv676.com1.z0.glb.clouddn.com/mmqrcode1465308879044.png" alt="GeekMonKey Alipay"/>
+          <p>加我微信私聊</p>
+        </div>
+      
     </div>
+  </div>
 
-    <div>
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/02/WebApi-use-Asp-Net-Identity/" itemprop="url">
-                  WebApi中使用 Asp.Net Identity 进行身份认证
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-02T14:29:29+08:00" content="2016-07-02">
-              2016-07-02
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/02/WebApi-use-Asp-Net-Identity/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/02/WebApi-use-Asp-Net-Identity/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/工厂模式/" rel="tag">#工厂模式</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>最近，在整理<code>3S比赛</code>项目代码的时候，和老师讨论到数据库安全的问题，之前写的WebApi服务是没有加任何验证的，也就是说，任何人只要知道了接口的url，都能够模拟http请求去访问我们的服务接口，在该项目中仅仅写了<code>get</code>方法，可以匿名获取到数据。再加上<code>put</code>、<code>deleta</code>、<code>post</code>方法即可去增删改查数据库，在实际项目的应用过程中是不可取的。</p>
-<p>由于之前<code>3S</code>项目的数据都是模拟数据，不是工业现场的真实数据，写一个简单的演示demo其WebApi不加任何验证也没什么不妥，不过最近实验室要给山西的氧化铝工厂做一个生产过程移动监控的APP，设计到工业数据的安全性问题，需要解决WebApi的身份验证问题。经过简单的了解学习，<code>Asp.Net Identity</code>的引入为Asp.Net应用程序提供了一套统一的身份验证机制。</p>
-<h2 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h2><p>这是一张Identity官方教程的图，认证的流程如下：</p>
-<p><img src="http://7xv676.com1.z0.glb.clouddn.com/working-with-web-api-and-asp-net-identity-1.png" alt=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/02/WebApi-use-Asp-Net-Identity/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/02/WebApi-use-Asp-Net-Identity/" rel="next" title="WebApi中使用 Asp.Net Identity 进行身份认证">
+                <i class="fa fa-chevron-left"></i> WebApi中使用 Asp.Net Identity 进行身份认证
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/21/OSC-2016-shenyang/" itemprop="url">
-                  2016沈阳OSC源创会小记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-21T22:06:47+08:00" content="2016-06-21">
-              2016-06-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/21/OSC-2016-shenyang/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/21/OSC-2016-shenyang/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>很早就听说<code>开源中国</code>要在沈阳办<strong>OSC源创会</strong>，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/21/OSC-2016-shenyang/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
+
+    <div class="post-spread">
       
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/10/rtsp-haikang-Ip-camare/" itemprop="url">
-                  使用rtsp协议访问海康IP摄像头
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-10T11:08:02+08:00" content="2016-06-10">
-              2016-06-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/10/rtsp-haikang-Ip-camare/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/10/rtsp-haikang-Ip-camare/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>前段时间做<code>3S</code>比赛的时候涉及到在安卓端调用实验室海康威视摄像头进行实时的视频监控，苦于海康官网没有提供安卓端的SDK，只好硬着头皮在网上大海捞针般的开始查找，倒是找到了一些反编译出来的SDK，包括相应的网络库SDK和播放库SDK，还提供相应的demo，然而遗憾的是并没把这些成功跑起来。       </p>
-<p>那就另辟蹊径吧。在网上查阅资料和大牛们的博客的时候发现最新的海康IP摄像头是支持rtsp协议进行流媒体播放的，翻阅了下实验室采购的摄像头的技术手册，完全没有问题，最终的技术方案就是在安卓端采用<code>videoview</code>调用基于rtsp协议的流媒体地址进行播放，实现移动端实时视频监控的效果。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/10/rtsp-haikang-Ip-camare/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/08/Hello-World/" itemprop="url">
-                  Hello,World!
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-08T16:33:12+08:00" content="2016-06-08">
-              2016-06-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/08/Hello-World/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/08/Hello-World/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://7xv676.com1.z0.glb.clouddn.com/smile.jpg" alt="smile"></p>
-<h2 id="写在之前"><a href="#写在之前" class="headerlink" title="写在之前"></a>写在之前</h2><blockquote class="blockquote-center"><p>Hello World! </p>
-</blockquote>
-<p>Hello World！你好世界！经过几天的学习，折腾来折腾去终于把基于<code>github pages+HEXO</code>的博客搭建好了，第一篇呢就随便写写吧，算是立一个简简单单的时间flag。    </p>
-<p>事出有因，本博客的搭建其实是学习<code>Git</code>后的一个简单的实践，因为我之前的博客是部署在阿里云上的（<em>记得当时还是阿里云做活动，微博转发送了一个2年的免费空间，于是用Wordpress在上面搭建了一个博客，域名用的是<code>电子学社</code>的二级域名<code>geekmonkey.dzxs-dl.com</code>以及在<code>freenom</code>网站上申请的免费顶级域名<code>geekmonkey.ml</code></em>），博客起名为<a href="http://geekmonkey.dzxs-dl.com">极客猴儿</a>。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/08/Hello-World/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -928,6 +496,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/06/Factory-Pattern/"
+           data-title="简单工厂模式，工厂模式，抽象工厂模式" data-url="http://ymhou.github.com/2016/07/06/Factory-Pattern/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -947,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://7xv676.com1.z0.glb.clouddn.com/JPEG_20160527_140907_-206264615%20(1).jpg"
@@ -1050,6 +635,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-简单工厂模式"><span class="nav-number">1.</span> <span class="nav-text">一, 简单工厂模式:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#用代码来展示就是"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">用代码来展示就是:</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-工厂模式"><span class="nav-number">2.</span> <span class="nav-text">二, 工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#用代码展示就是"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">用代码展示就是:</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">3.</span> <span class="nav-text">抽象工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#用代码展示-以妹子的父亲为例子"><span class="nav-number">3.0.0.0.1.</span> <span class="nav-text">用代码展示(以妹子的父亲为例子):</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#就这样，我和我的云南妹子去见了她父母，然后过上了幸福的生活"><span class="nav-number">3.0.0.0.2.</span> <span class="nav-text">就这样，我和我的云南妹子去见了她父母，然后过上了幸福的生活.</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1153,6 +749,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

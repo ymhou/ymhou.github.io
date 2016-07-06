@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702140435.png">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702140546.png">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160702141322.png">
-<meta property="og:updated_time" content="2016-07-02T06:41:57.125Z">
+<meta property="og:updated_time" content="2016-07-06T06:03:45.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebApi中使用 Asp.Net Identity 进行身份认证">
 <meta name="twitter:description" content="最近，在整理3S比赛项目代码的时候，和老师讨论到数据库安全的问题，之前写的WebApi服务是没有加任何验证的，也就是说，任何人只要知道了接口的url，都能够模拟http请求去访问我们的服务接口，在该项目中仅仅写了get方法，可以匿名获取到数据。再加上put、deleta、post方法即可去增删改查数据库，在实际项目的应用过程中是不可取的。
@@ -220,6 +220,16 @@
               <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
             
             随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-copy">
+          <a href="/categories/转载/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-copy"></i> <br />
+            
+            转载
           </a>
         </li>
       
@@ -361,7 +371,7 @@
 <li>使用基于 BearerToken 的登录方式，这也是本使用的方式；（ BearerToken 与常见的第三方 Oauth 方式类似，但这是一种不记名的方式，也就是客户端无需提供 ClientId，ClientSecret）</li>
 </ol>
 <h3 id="OAuthBearerTokens"><a href="#OAuthBearerTokens" class="headerlink" title="OAuthBearerTokens"></a>OAuthBearerTokens</h3><p>构造函数中 <code>OAuthAuthorizationServerOptions</code> 提供了一下配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 针对基于 OAuth 的流配置应用程序</span><br><span class="line">            PublicClientId = &quot;self&quot;;</span><br><span class="line">            OAuthOptions = new OAuthAuthorizationServerOptions</span><br><span class="line">            &#123;</span><br><span class="line">                TokenEndpointPath = new PathString(&quot;/Token&quot;),</span><br><span class="line">                Provider = new ApplicationOAuthProvider(PublicClientId),</span><br><span class="line">                AuthorizeEndpointPath = new PathString(&quot;/api/Account/ExternalLogin&quot;),</span><br><span class="line">                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),</span><br><span class="line">                //在生产模式下设 AllowInsecureHttp = false</span><br><span class="line">                AllowInsecureHttp = true</span><br><span class="line">            &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 针对基于 OAuth 的流配置应用程序</span></span><br><span class="line">          PublicClientId = <span class="string">"self"</span>;</span><br><span class="line">          OAuthOptions = <span class="keyword">new</span> OAuthAuthorizationServerOptions</span><br><span class="line">          &#123;</span><br><span class="line">              TokenEndpointPath = <span class="keyword">new</span> PathString(<span class="string">"/Token"</span>),</span><br><span class="line">              Provider = <span class="keyword">new</span> ApplicationOAuthProvider(PublicClientId),</span><br><span class="line">              AuthorizeEndpointPath = <span class="keyword">new</span> PathString(<span class="string">"/api/Account/ExternalLogin"</span>),</span><br><span class="line">              AccessTokenExpireTimeSpan = TimeSpan.FromDays(<span class="number">14</span>),</span><br><span class="line">              <span class="comment">//在生产模式下设 AllowInsecureHttp = false</span></span><br><span class="line">              AllowInsecureHttp = <span class="literal">true</span></span><br><span class="line">          &#125;;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>生成 token 的地址为：<a href="http://localhost:port/token；" target="_blank" rel="external">http://localhost:port/token；</a></li>
 <li>为 token 设置了失效时间为14天，失效后，再次访问受限的请求时为得到未授权的相应.</li>
@@ -431,6 +441,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/06/Factory-Pattern/" rel="prev" title="简单工厂模式，工厂模式，抽象工厂模式">
+                简单工厂模式，工厂模式，抽象工厂模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -505,7 +519,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -513,7 +527,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -522,7 +536,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
