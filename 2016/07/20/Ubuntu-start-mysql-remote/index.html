@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OSC," />
+  <meta name="keywords" content="Ubuntu,Mysql," />
 
 
 
@@ -84,20 +84,21 @@
 
 
 
-<meta name="description" content="很早就听说开源中国要在沈阳办OSC源创会，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。">
+<meta name="description" content="前段时间在实验室的云平台上新开了一台虚拟机，专门用作数据库服务器，供课题组组内同学使用，这就涉及到了数据库远程访问的问题。
+出于安全方面考虑 MySql-Server 只允许本机(localhost,127.0.0.1)来连接访问. 这对于 Web-Server 与 MySql-Server 都在同一台服务器上的网站架构来说是没有问题的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2016沈阳OSC源创会小记">
-<meta property="og:url" content="http://ymhou.github.com/2016/06/21/OSC-2016-shenyang/index.html">
+<meta property="og:title" content="Ubuntu下开启Mysql的远程访问">
+<meta property="og:url" content="http://ymhou.github.com/2016/07/20/Ubuntu-start-mysql-remote/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="很早就听说开源中国要在沈阳办OSC源创会，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。">
-<meta property="og:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/111942_k2i4_2686220.jpg">
-<meta property="og:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/112502_HQP1_2686220.jpg">
-<meta property="og:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/120243_EKfR_2686220.jpg">
-<meta property="og:updated_time" content="2016-06-21T14:17:40.243Z">
+<meta property="og:description" content="前段时间在实验室的云平台上新开了一台虚拟机，专门用作数据库服务器，供课题组组内同学使用，这就涉及到了数据库远程访问的问题。
+出于安全方面考虑 MySql-Server 只允许本机(localhost,127.0.0.1)来连接访问. 这对于 Web-Server 与 MySql-Server 都在同一台服务器上的网站架构来说是没有问题的。">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%87.png">
+<meta property="og:updated_time" content="2016-07-20T07:38:15.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2016沈阳OSC源创会小记">
-<meta name="twitter:description" content="很早就听说开源中国要在沈阳办OSC源创会，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。">
-<meta name="twitter:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/111942_k2i4_2686220.jpg">
+<meta name="twitter:title" content="Ubuntu下开启Mysql的远程访问">
+<meta name="twitter:description" content="前段时间在实验室的云平台上新开了一台虚拟机，专门用作数据库服务器，供课题组组内同学使用，这就涉及到了数据库远程访问的问题。
+出于安全方面考虑 MySql-Server 只允许本机(localhost,127.0.0.1)来连接访问. 这对于 Web-Server 与 MySql-Server 都在同一台服务器上的网站架构来说是没有问题的。">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%87.png">
 
 
 
@@ -115,7 +116,7 @@
   };
 </script>
 
-  <title> 2016沈阳OSC源创会小记 | GeekMonKey's Blog </title>
+  <title> Ubuntu下开启Mysql的远程访问 | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +276,7 @@
             
             
               
-                2016沈阳OSC源创会小记
+                Ubuntu下开启Mysql的远程访问
               
             
           </h1>
@@ -287,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-21T22:06:47+08:00" content="2016-06-21">
-              2016-06-21
+            <time itemprop="dateCreated" datetime="2016-07-20T15:36:14+08:00" content="2016-07-20">
+              2016-07-20
             </time>
           </span>
 
@@ -301,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
                   </a>
                 </span>
 
@@ -317,8 +318,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/21/OSC-2016-shenyang/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/21/OSC-2016-shenyang/" itemprop="commentsCount"></span>
+                <a href="/2016/07/20/Ubuntu-start-mysql-remote/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/20/Ubuntu-start-mysql-remote/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,29 +342,21 @@
       
 
       
-        <p>很早就听说<code>开源中国</code>要在沈阳办<strong>OSC源创会</strong>，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。<br><a id="more"></a><br>到了格林饭店的会议厅的时候第一场分享已经结束了，错过了我比较感兴趣的<code>树莓派</code>报告，有点遗憾，不过报告ppt全都收集了。本期的主题一共有4个：</p>
-<blockquote>
-<p>1.树莓派机器人和机器学习</p>
-<p>内容简介：1.计算设备发展方向-树莓派。2.机器人大脑=树莓派+机器学习+传感器3.机器学习如何调整参数（以无人机作为参考) 4.机器学习在训练机器人上的缺点。</p>
-<p>分享嘉宾：刘端阳，MBH树莓派智能机器人俱乐部创始人。</p>
-<p>2.云时代的企业运维转型</p>
-<p>内容简介：随着云的概念逐步被接受，很多企业开始尝试公有云，这给传统运维模式带来了一系列的变化，例如跨云的管理、虚拟化及容器化带来的操作单元暴增、运维职能被部分新技术所取代，运维如何探索职能边界的延伸、运维如何利用云及大数据技术帮助业务实现精细化运营。</p>
-<p>分享嘉宾：杨文兵，腾讯蓝鲸运营经理，资深应用运维&amp;DevOps。先后担任腾讯游戏地下城与勇士、穿越火线、七雄争霸等不同类型游戏的运维负责人。蓝鲸体系首批DevOps，在蓝鲸中开发过多套支撑工具和运营系统。</p>
-<p>3.分布式定时任务调度系统</p>
-<p>内容简介：分布式定时调度框架：是一套可在分布式集群环境中运行的定时任务，具有扩展性高、支持水平扩展，  提供系统化管理操作后台界面，提供监控报警功能，任务支持单机模式和分布式模式运行，支持ip过滤，任务支持灾难重现，以及支持大数据作业管理等功能。</p>
-<p>分享嘉宾：stark_summer ，MBH俱乐部爱好者，专注于分布式计算、消息队列、大数据相关技术(如spark，hadoop，hbase,storm等)以及机器学习。</p>
-<p>4.企业应用的开发思路及开源的价值</p>
-<p>内容简介：介绍新一代企业应用的 “轻量化、模块化、移动化”开发思路，介绍基于YII框架的可配置化实现功能模块的安装与卸载，用RBAC权限构建企业应用的多维权限体系，分享IBOS开源路上的得与失。</p>
-<p>分享嘉宾：杨芳贤，IBOS创始人。专注2B企业应用开发十余年，历届SDCC软件大会、微信开发者大会演讲嘉宾，长期活跃于GitHub、开源中国等开源社区，有着丰富的互联网产品设计经验及开发经验。</p>
-</blockquote>
-<p>总而言之报告还是蛮不错的，不仅仅分享了技术，还分享了开源公司的商业模式，当然，也见到了传说中的开源中国的<code>红薯</code>。虽然很多地方不明觉厉但还是感觉收获了一些干货吧，完全不同于实验室邀请的一些大牛来实验室做学术报告的感觉。</p>
-<p><img src="http://7xn8bp.com1.z0.glb.clouddn.com/111942_k2i4_2686220.jpg" alt=""></p>
-<p><img src="http://7xn8bp.com1.z0.glb.clouddn.com/112502_HQP1_2686220.jpg" alt=""></p>
-<p><img src="http://7xn8bp.com1.z0.glb.clouddn.com/120243_EKfR_2686220.jpg" alt="红薯"></p>
-<p>最后献上本次沈阳站源创会的演讲PPT下载链接：<br>1.云时代的企业运维转型——杨文兵 <a href="http://www.oschina.net/doc/39136" target="_blank" rel="external">PPT分享</a></p>
-<p>2.树莓派机器人和机器学习——刘端阳  <a href="http://www.oschina.net/doc/39138" target="_blank" rel="external">PPT分享</a></p>
-<p>3.企业应用的开发思路及开源的价值——杨芳贤  <a href="http://www.oschina.net/doc/39143" target="_blank" rel="external">PPT分享</a></p>
-<p>4.分布式定时调度系统——stark_summer   <a href="http://www.oschina.net/doc/39144" target="_blank" rel="external">PPT分享</a></p>
+        <p>前段时间在实验室的云平台上新开了一台虚拟机，专门用作数据库服务器，供课题组组内同学使用，这就涉及到了数据库远程访问的问题。</p>
+<p>出于安全方面考虑 MySql-Server 只允许本机(<code>localhost</code>,<code>127.0.0.1</code>)来连接访问. 这对于 Web-Server 与 MySql-Server 都在同一台服务器上的网站架构来说是没有问题的。<br><a id="more"></a><br>设置Ubuntu允许远程连接MySQL的步骤如下：</p>
+<p><strong>第一步：</strong><br>在目录<code>/etc/mysql</code>下找到<code>my.cnf</code>，用vim编辑，找到<code>my.cnf</code>里面的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-address = 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>将其注释或将<code>127.0.0.1</code>替换为<code>0.0.0.0</code>即可实现允许任意IP的访问。</p>
+<p><strong>第二步：</strong><br>1.用<code>root</code>账户登录Mysql数据库；</p>
+<p>2.授权用户能进行远程连接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all on *.* to username@&apos;%&apos; identified by &apos;password&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>注意：<code>username</code>是用户名，<code>password</code>是要自己填写的一个名字，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all on *.* to zl@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;*.*&quot;：第一个*代表数据库名；第二个*代表表名。这里的意思是所有数据库里的所有表都授权给用户。  </span><br><span class="line">root：授予root账号。    </span><br><span class="line">“%”：表示授权的用户IP可以指定，这里代表任意的IP地址都能访问MySQL数据库。    </span><br><span class="line">“password”：分配账号对应的密码，这里密码自己替换成你的mysql root帐号密码。</span><br></pre></td></tr></table></figure>
+<p>3.最后刷新一下，执行：<code>flush privileges</code>；</p>
+<p>4.重启 MySQL：<code>sudo /etc/init.d/mysql restart</code></p>
+<p><strong>第三步：</strong><br>1.命令行方式登入：<br>远程登陆mysql，同时指定对应的端口和ip。<br>假设远程的ip为：<code>10.154.0.43</code><br>端口为：<code>3341</code></p>
+<p>输入如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> #mysql -uroot -p -h10.154.0.43 -P3341</span><br></pre></td></tr></table></figure></p>
+<p>回车后,会需要输入密码。</p>
+<p>2.使用navicat for mysql登录：</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%87.png" alt="使用navicat for mysql登录"></p>
 
       
     </div>
@@ -406,7 +399,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OSC/" rel="tag">#OSC</a>
+            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+          
+            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
           
         </div>
       
@@ -415,17 +410,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/10/rtsp-haikang-Ip-camare/" rel="next" title="使用rtsp协议访问海康IP摄像头">
-                <i class="fa fa-chevron-left"></i> 使用rtsp协议访问海康IP摄像头
+              <a href="/2016/07/09/RESTful-WebAPI-design/" rel="next" title="RESTful Web API [设计篇]">
+                <i class="fa fa-chevron-left"></i> RESTful Web API [设计篇]
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/02/WebApi-use-Asp-Net-Identity/" rel="prev" title="WebApi中使用 Asp.Net Identity 进行身份认证">
-                WebApi中使用 Asp.Net Identity 进行身份认证 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -454,8 +445,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/21/OSC-2016-shenyang/"
-           data-title="2016沈阳OSC源创会小记" data-url="http://ymhou.github.com/2016/06/21/OSC-2016-shenyang/">
+      <div class="ds-thread" data-thread-key="2016/07/20/Ubuntu-start-mysql-remote/"
+           data-title="Ubuntu下开启Mysql的远程访问" data-url="http://ymhou.github.com/2016/07/20/Ubuntu-start-mysql-remote/">
       </div>
     
   </div>
