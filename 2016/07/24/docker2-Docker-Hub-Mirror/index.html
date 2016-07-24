@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/4.png">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/5.png">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/222.png">
-<meta property="og:updated_time" content="2016-07-24T07:08:14.301Z">
+<meta property="og:updated_time" content="2016-07-24T07:12:39.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习笔记(2)--使用Docker Hub Mirror加速Docker官方镜像下载">
 <meta name="twitter:description" content="安装好Docker之后，我们可以在Docker Hub上下载到大量已经容器化的应用镜像，即拉即用。这些镜像中，有些是Docker官方维护的，更多的是众多开发者自发上传分享的。而且你还可以在Docker Hub中绑定你的代码托管系统（目前支持Github和Bitbucket）配置自动生成镜像功能，这样Docker Hub会在你代码更新时自动生成对应的Docker镜像。">
@@ -344,7 +344,7 @@
       
 
       
-        <p>安装好Docker之后，我们可以在Docker Hub上下载到大量已经容器化的应用镜像，即拉即用。这些镜像中，有些是Docker官方维护的，更多的是众多开发者自发上传分享的。而且你还可以在Docker Hub中绑定你的代码托管系统（目前支持Github和Bitbucket）配置自动生成镜像功能，这样Docker Hub会在你代码更新时自动生成对应的Docker镜像。<br><a id="more"></a><br>不幸的是，Docker Hub并没有在国内部署服务器或者使用国内的CDN服务，因此在国内特殊的网络环境下，镜像下载十分耗时，少则二十分钟，多则数十小时。为了克服跨洋网络延迟，能够快速高效地下载Docker镜像，最为有效的方式之一就是：使用 DaoCloud团队 (<a href="https://www.daocloud.io/)提供的服务Docker" target="_blank" rel="external">https://www.daocloud.io/)提供的服务Docker</a> Hub Mirror。</p>
+        <p>安装好Docker之后，我们可以在Docker Hub上下载到大量已经容器化的应用镜像，即拉即用。这些镜像中，有些是Docker官方维护的，更多的是众多开发者自发上传分享的。而且你还可以在Docker Hub中绑定你的代码托管系统（目前支持Github和Bitbucket）配置自动生成镜像功能，这样Docker Hub会在你代码更新时自动生成对应的Docker镜像。<br><a id="more"></a><br>不幸的是，Docker Hub并没有在国内部署服务器或者使用国内的CDN服务，因此在国内特殊的网络环境下，镜像下载十分耗时，少则二十分钟，多则数十小时。为了克服跨洋网络延迟，能够快速高效地下载Docker镜像，最为有效的方式之一就是：使用 DaoCloud团队  (<a href="https://www.daocloud.io/" target="_blank" rel="external">https://www.daocloud.io/</a>) 提供的服务Docker Hub Mirror。</p>
 <h2 id="Docker-Hub-Mirror简介"><a href="#Docker-Hub-Mirror简介" class="headerlink" title="Docker Hub Mirror简介"></a>Docker Hub Mirror简介</h2><p>Docker Hub Mirror为全球最大的Docker Registry（Docker Hub）提供在中国的镜像代理服务。Docker Hub Mirror会为中国的用户在国内的服务器上缓存诸多镜像。</p>
 <p>当用户的Docker设定了–registry-mirror参数后，用户的Docker下拉镜像时，首先去Docker Hub Mirror中查找镜像，若命中则说明该镜像已经在Docker Hub Mirror中缓存，用户直接从Docker Hub Mirror中下载；若没有命中，则说该镜像还没有被缓存，那么Docker Hub Mirror首先会被驱使去Docker Hub中下载该镜像，并进行缓存，最终让用户从Docker Hub Miorror中下载该镜像。</p>
 <h2 id="Docker-Hub-Mirror使用说明"><a href="#Docker-Hub-Mirror使用说明" class="headerlink" title="Docker Hub Mirror使用说明"></a>Docker Hub Mirror使用说明</h2><h3 id="注册Docker-Hub-Mirror账号"><a href="#注册Docker-Hub-Mirror账号" class="headerlink" title="注册Docker Hub Mirror账号"></a>注册Docker Hub Mirror账号</h3><p>DaoCloud提供Docker Hub Mirror服务。用户可以进入Docker Hub Mirror注册入口注册，在进入控制台页面后直接点击启动你的加速器。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/11.png" alt="注册"><br><img src="http://7xv676.com1.z0.glb.clouddn.com/2.png" alt="选择加速器"></p>
