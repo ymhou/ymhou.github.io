@@ -93,7 +93,7 @@
 <meta property="og:description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
 在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行Docker会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/1.png">
-<meta property="og:updated_time" content="2016-07-24T07:12:05.675Z">
+<meta property="og:updated_time" content="2016-07-24T07:14:45.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习笔记(1)--Docker安装(Ubuntu 16.04)">
 <meta name="twitter:description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
@@ -353,11 +353,11 @@
 <p>Ubuntu Xenial 16.04 (LTS)不需要考虑内核的问题，按照如下步骤安装即可。</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>操作系统：Ubuntu Xenial 16.04 (LTS)</p>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
-<li><p>添加GPG key：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加源          </p>
-</li>
+<li>添加GPG key：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span><br></pre></td></tr></table></figure>
+<ol>
+<li>添加源          </li>
 </ol>
 <p>新建文件：<code>vi /etc/apt/sources.list.d/docker.list</code>,<br>在里面添加内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure></p>
 <ol>
