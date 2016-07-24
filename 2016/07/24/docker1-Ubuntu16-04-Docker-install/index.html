@@ -85,19 +85,19 @@
 
 
 <meta name="description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
-在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
+在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行Docker会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker学习笔记(1)--Docker安装(Ubuntu 16.04)">
 <meta property="og:url" content="http://ymhou.github.com/2016/07/24/docker1-Ubuntu16-04-Docker-install/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
 <meta property="og:description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
-在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
+在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行Docker会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/1.png">
-<meta property="og:updated_time" content="2016-07-24T07:05:59.135Z">
+<meta property="og:updated_time" content="2016-07-24T07:12:05.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习笔记(1)--Docker安装(Ubuntu 16.04)">
 <meta name="twitter:description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
-在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
+在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行Docker会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
 <meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/1.png">
 
 
@@ -343,15 +343,14 @@
 
       
         <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p><code>Docker</code> 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。</p>
-<p>在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。<br><a id="more"></a><br>Docker 支持以下的 Ubuntu 版本：</p>
+<p>在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行Docker会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。<br><a id="more"></a><br>Docker 支持以下的 Ubuntu 版本：</p>
 <ul>
 <li>Ubuntu Xenial 16.04 (LTS) (64-bit)</li>
 <li>Ubuntu Trusty 14.04 (LTS) (64-bit)</li>
 <li>Ubuntu Precise 12.04 (LTS) (64-bit)</li>
-<li><p>Ubuntu Raring 13.04 and Saucy 13.10 (64 bit)</p>
-<p>Ubuntu Xenial 16.04 (LTS)不需要考虑内核的问题，按照如下步骤安装即可。</p>
-</li>
+<li>Ubuntu Raring 13.04 and Saucy 13.10 (64 bit)</li>
 </ul>
+<p>Ubuntu Xenial 16.04 (LTS)不需要考虑内核的问题，按照如下步骤安装即可。</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>操作系统：Ubuntu Xenial 16.04 (LTS)</p>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
 <li><p>添加GPG key：</p>
@@ -362,9 +361,9 @@
 </ol>
 <p>新建文件：<code>vi /etc/apt/sources.list.d/docker.list</code>,<br>在里面添加内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure></p>
 <ol>
-<li>更新源<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-</li>
+<li>更新源</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker-engine</span><br></pre></td></tr></table></figure>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker start </span><br><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
 <p>其中，hello-world为镜像，该镜像会从镜像库中下载，执行的结果如下：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/1.png" alt=""></p>
