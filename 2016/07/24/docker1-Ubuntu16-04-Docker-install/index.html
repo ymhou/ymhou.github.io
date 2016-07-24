@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随笔," />
+  <meta name="keywords" content="Ubuntu,Docker," />
 
 
 
@@ -84,27 +84,21 @@
 
 
 
-<meta name="description" content="写在之前Hello World! 
-
-Hello World！你好世界！经过几天的学习，折腾来折腾去终于把基于github pages+HEXO的博客搭建好了，第一篇呢就随便写写吧，算是立一个简简单单的时间flag。    
-事出有因，本博客的搭建其实是学习Git后的一个简单的实践，因为我之前的博客是部署在阿里云上的（记得当时还是阿里云做活动，微博转发送了一个2年的免费空间，于是用Wordpre">
+<meta name="description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
+在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello,World!">
-<meta property="og:url" content="http://ymhou.github.com/2016/06/08/Hello-World/index.html">
+<meta property="og:title" content="Docker学习笔记(1)--Docker安装(Ubuntu 16.04)">
+<meta property="og:url" content="http://ymhou.github.com/2016/07/24/docker1-Ubuntu16-04-Docker-install/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="写在之前Hello World! 
-
-Hello World！你好世界！经过几天的学习，折腾来折腾去终于把基于github pages+HEXO的博客搭建好了，第一篇呢就随便写写吧，算是立一个简简单单的时间flag。    
-事出有因，本博客的搭建其实是学习Git后的一个简单的实践，因为我之前的博客是部署在阿里云上的（记得当时还是阿里云做活动，微博转发送了一个2年的免费空间，于是用Wordpre">
-<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/smile.jpg">
-<meta property="og:updated_time" content="2016-06-11T13:47:00.048Z">
+<meta property="og:description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
+在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/1.png">
+<meta property="og:updated_time" content="2016-07-24T07:05:59.135Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello,World!">
-<meta name="twitter:description" content="写在之前Hello World! 
-
-Hello World！你好世界！经过几天的学习，折腾来折腾去终于把基于github pages+HEXO的博客搭建好了，第一篇呢就随便写写吧，算是立一个简简单单的时间flag。    
-事出有因，本博客的搭建其实是学习Git后的一个简单的实践，因为我之前的博客是部署在阿里云上的（记得当时还是阿里云做活动，微博转发送了一个2年的免费空间，于是用Wordpre">
-<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/smile.jpg">
+<meta name="twitter:title" content="Docker学习笔记(1)--Docker安装(Ubuntu 16.04)">
+<meta name="twitter:description" content="前提条件Docker 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。
+在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/1.png">
 
 
 
@@ -122,7 +116,7 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
   };
 </script>
 
-  <title> Hello,World! | GeekMonKey's Blog </title>
+  <title> Docker学习笔记(1)--Docker安装(Ubuntu 16.04) | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -282,7 +276,7 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
             
             
               
-                Hello,World!
+                Docker学习笔记(1)--Docker安装(Ubuntu 16.04)
               
             
           </h1>
@@ -294,8 +288,8 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-08T16:33:12+08:00" content="2016-06-08">
-              2016-06-08
+            <time itemprop="dateCreated" datetime="2016-07-24T15:03:10+08:00" content="2016-07-24">
+              2016-07-24
             </time>
           </span>
 
@@ -308,8 +302,8 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
                   </a>
                 </span>
 
@@ -324,8 +318,8 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/08/Hello-World/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/08/Hello-World/" itemprop="commentsCount"></span>
+                <a href="/2016/07/24/docker1-Ubuntu16-04-Docker-install/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/docker1-Ubuntu16-04-Docker-install/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -348,17 +342,41 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
       
 
       
-        <p><img src="http://7xv676.com1.z0.glb.clouddn.com/smile.jpg" alt="smile"></p>
-<h2 id="写在之前"><a href="#写在之前" class="headerlink" title="写在之前"></a>写在之前</h2><blockquote class="blockquote-center"><p>Hello World! </p>
+        <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p><code>Docker</code> 需要在64位版本的Ubuntu上安装。此外，你还需要保证你的 Ubuntu 内核的最小版本不低于 3.10，其中3.10 小版本和更新维护版也是可以使用的。</p>
+<p>在低于3.10版本的内核上运行 Docker 会丢失一部分功能。在这些旧的版本上运行 Docker 会出现一些BUG，这些BUG在一定的条件里会导致数据的丢失，或者报一些严重的错误。<br><a id="more"></a><br>Docker 支持以下的 Ubuntu 版本：</p>
+<ul>
+<li>Ubuntu Xenial 16.04 (LTS) (64-bit)</li>
+<li>Ubuntu Trusty 14.04 (LTS) (64-bit)</li>
+<li>Ubuntu Precise 12.04 (LTS) (64-bit)</li>
+<li><p>Ubuntu Raring 13.04 and Saucy 13.10 (64 bit)</p>
+<p>Ubuntu Xenial 16.04 (LTS)不需要考虑内核的问题，按照如下步骤安装即可。</p>
+</li>
+</ul>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>操作系统：Ubuntu Xenial 16.04 (LTS)</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li><p>添加GPG key：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加源          </p>
+</li>
+</ol>
+<p>新建文件：<code>vi /etc/apt/sources.list.d/docker.list</code>,<br>在里面添加内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>更新源<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker-engine</span><br></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker start </span><br><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+<p>其中，hello-world为镜像，该镜像会从镜像库中下载，执行的结果如下：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/1.png" alt=""></p>
+<h2 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<ul>
+<li><a href="https://www.gitbook.com/book/yeasy/docker_practice/details" target="_blank" rel="external">https://www.gitbook.com/book/yeasy/docker_practice/details</a></li>
+<li><a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/" target="_blank" rel="external">https://docs.docker.com/engine/installation/linux/ubuntulinux/</a></li>
+<li><a href="http://www.cnblogs.com/ola2010/" target="_blank" rel="external">http://www.cnblogs.com/ola2010/</a></li>
+</ul>
 </blockquote>
-<p>Hello World！你好世界！经过几天的学习，折腾来折腾去终于把基于<code>github pages+HEXO</code>的博客搭建好了，第一篇呢就随便写写吧，算是立一个简简单单的时间flag。    </p>
-<p>事出有因，本博客的搭建其实是学习<code>Git</code>后的一个简单的实践，因为我之前的博客是部署在阿里云上的（<em>记得当时还是阿里云做活动，微博转发送了一个2年的免费空间，于是用Wordpress在上面搭建了一个博客，域名用的是<code>电子学社</code>的二级域名<code>geekmonkey.dzxs-dl.com</code>以及在<code>freenom</code>网站上申请的免费顶级域名<code>geekmonkey.ml</code></em>），博客起名为<a href="http://geekmonkey.dzxs-dl.com" target="_blank" rel="external">极客猴儿</a>。<br><a id="more"></a><br>刚才提到本博客的搭建是在学习Git以及接触到Github之后，其实在学习Git之前是有这样一个小插曲的。我本科学习的是自动化专业，虽然在本科期间也写过一定的代码，但是从来没有接触过代码的版本控制系统，每次写完一个版本的代码都是拷贝出来然后加上时间节点。在今年3月份开始准备<code>“3S”物联网大赛</code>,我主要负责后端程序的编写，相当于做一个小的系统小的项目吧，算是有一定的代码量，徐老师建议我们用<code>SVN</code>进行代码管理，这是我第一次接触到代码的版本控制系统。在这里不得不说<code>SVN</code>的部署和使用真的是相当的方便，简单易上手，几乎没有学习成本，三下五除二就在实验室的云服务器上部署好了两台<code>SVN</code>服务器，当然两台的意义就是为了进行备份的，然后就在PC上装好小乌龟非常愉快的开始使用<code>SVN</code>了。</p>
-<p>这个时候问题来了……云服务器由于更换硬盘，在硬盘数据迁移的时候发生了一点小问题，导致主SVN服务器持续宕机，就这样死掉了半个多月，更蛋疼的是次SVN服务器由于之前的疏忽是没有进行数据备份的，也就是说我之前迭代的6.7个代码版本完全丢失了在这段时间，欲哭无泪啊，所幸的是当时现存的版本是好用的。在宕机半个月之后，直到浪潮的售后来来回回修复好了数据迁移问题，SVN服务器才再次能够正常使用。</p>
-<p>好吧，一朝被蛇咬，十年怕井绳。集中式版本控制系统的弊端在此时暴露无遗，为了避免这种情况的再次发生，我索性在PC上搭建了SVN服务器，也就是把服务器也放在了我的本地电脑上，在本地电脑建立代码仓库。就这样，我在本机上进行代码迭代管理，直到5月16号比赛完成。</p>
-<p>从南京比赛回来之后开始了解分布式版本控制系统<code>Git</code>，压缩时间断断续续学习廖雪峰老师的<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">《Git教程》</a>,简单掌握之后了解下<code>Github</code>，于是搭建了本博客，目的是为了记录下平时学习中的点点滴滴，把平时做在Onenote下的笔记分享出来。</p>
-<p>本博客的顺利搭建得益于分布式版本控制系统Git的学习以及网络上众多大牛的博客教程， 参考了数篇文章，在此小弟表示下感谢，感谢大牛们的分享以及Geek精神。</p>
-<h2 id="写写以后"><a href="#写写以后" class="headerlink" title="写写以后"></a>写写以后</h2><p>既然博客建好了，坚持写点东西还是相当有必要的。之前在Onenote记笔记都是非常随意的，或许也就只有我自己能看懂了。</p>
-<h2 id="写给自己"><a href="#写给自己" class="headerlink" title="写给自己"></a>写给自己</h2>
+
       
     </div>
 
@@ -400,7 +418,9 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
       
         <div class="post-tags">
           
-            <a href="/tags/随笔/" rel="tag">#随笔</a>
+            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+          
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
           
         </div>
       
@@ -409,12 +429,16 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/20/Ubuntu-start-mysql-remote/" rel="next" title="Ubuntu下开启Mysql的远程访问">
+                <i class="fa fa-chevron-left"></i> Ubuntu下开启Mysql的远程访问
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/10/rtsp-haikang-Ip-camare/" rel="prev" title="使用rtsp协议访问海康IP摄像头">
-                使用rtsp协议访问海康IP摄像头 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/24/docker2-Docker-Hub-Mirror/" rel="prev" title="Docker学习笔记(2)--使用Docker Hub Mirror加速Docker官方镜像下载">
+                Docker学习笔记(2)--使用Docker Hub Mirror加速Docker官方镜像下载 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -444,8 +468,8 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/08/Hello-World/"
-           data-title="Hello,World!" data-url="http://ymhou.github.com/2016/06/08/Hello-World/">
+      <div class="ds-thread" data-thread-key="2016/07/24/docker1-Ubuntu16-04-Docker-install/"
+           data-title="Docker学习笔记(1)--Docker安装(Ubuntu 16.04)" data-url="http://ymhou.github.com/2016/07/24/docker1-Ubuntu16-04-Docker-install/">
       </div>
     
   </div>
@@ -588,7 +612,7 @@ Hello World！你好世界！经过几天的学习，折腾来折腾去终于把
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在之前"><span class="nav-number">1.</span> <span class="nav-text">写在之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写写以后"><span class="nav-number">2.</span> <span class="nav-text">写写以后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写给自己"><span class="nav-number">3.</span> <span class="nav-text">写给自己</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">4.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置开机启动"><span class="nav-number">6.</span> <span class="nav-text">配置开机启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
           </div>
         </section>
