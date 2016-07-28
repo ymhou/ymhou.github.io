@@ -1,0 +1,778 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Ubuntu,Docker," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="基本概念Docker镜像可以用来创建Docker容器，为一个只读的模板。
+Docker运行容器前需要本地存在对应的镜像，如果镜像不在本地，Docker会从镜像仓库下载。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker学习笔记(4)--镜像篇">
+<meta property="og:url" content="http://ymhou.github.com/2016/07/28/docker4-images/index.html">
+<meta property="og:site_name" content="GeekMonKey's Blog">
+<meta property="og:description" content="基本概念Docker镜像可以用来创建Docker容器，为一个只读的模板。
+Docker运行容器前需要本地存在对应的镜像，如果镜像不在本地，Docker会从镜像仓库下载。">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/docker-filesystems-multilayer.png">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/222.png">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160728161017.png">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160728161149.png">
+<meta property="og:updated_time" content="2016-07-28T08:45:10.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker学习笔记(4)--镜像篇">
+<meta name="twitter:description" content="基本概念Docker镜像可以用来创建Docker容器，为一个只读的模板。
+Docker运行容器前需要本地存在对应的镜像，如果镜像不在本地，Docker会从镜像仓库下载。">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/docker-filesystems-multilayer.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6291954834828428000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Docker学习笔记(4)--镜像篇 | GeekMonKey's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">GeekMonKey's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">永远年轻，永远热泪盈眶…</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/笔记/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            笔记
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-copy">
+          <a href="/categories/转载/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-copy"></i> <br />
+            
+            转载
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Docker学习笔记(4)--镜像篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-28T15:06:32+08:00" content="2016-07-28">
+              2016-07-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/28/docker4-images/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/docker4-images/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Docker镜像可以用来创建Docker容器，为一个只读的模板。</p>
+<p>Docker运行容器前需要本地存在对应的镜像，如果镜像不在本地，Docker会从镜像仓库下载。<br><a id="more"></a><br>docker的镜像实际上由一层一层的文件系统组成，这种层级的文件系统被称为UnionFS。在Docker镜像的最底层是bootfs。这一层与我们典型的Linux/Unix系统是一样的，包含boot加载器和内核。当boot加载完成之后整个内核就都在内存中了，此时内存的使用权已由bootfs转交给内核，此时系统也会卸载bootfs。Docker在bootfs之上的一层是rootfs（根文件系统）。rootfs就是各种不同的操作系统发行版，比如Ubuntu，Centos等等。</p>
+<p>由于 Docker 使用一个统一文件系统，Docker 进程认为整个文件系统是以读写方式挂载的。 但是所有的变更都发生顶层的可写层，而下层的原始的只读镜像文件并未变化。由于镜像不可写，所以镜像是无状态的。</p>
+<p>docker镜像的层级结构图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/docker-filesystems-multilayer.png" alt=""></p>
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><h3 id="从Docker-Hub仓库获取"><a href="#从Docker-Hub仓库获取" class="headerlink" title="从Docker Hub仓库获取"></a>从Docker Hub仓库获取</h3><p>目前 Docker 官方维护了一个公共仓库 Docker Hub，其中已经包括了超过 15,000 的镜像。大部分需求，都可以通过在 Docker Hub 中直接下载镜像来实现。可以使用 <code>docker pull</code> 命令来从仓库获取所需要的镜像。</p>
+<p>例如从 Docker Hub 仓库下载一个 Ubuntu 12.04 操作系统的镜像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull ubuntu:12.04S</span><br></pre></td></tr></table></figure></p>
+<p>有时候官方仓库注册服务器下载较慢，可以从其他仓库下载，如下所述。</p>
+<h3 id="从Docker-Hub-Mirror获取"><a href="#从Docker-Hub-Mirror获取" class="headerlink" title="从Docker Hub Mirror获取"></a>从Docker Hub Mirror获取</h3><p>在<a href="http://www.jianshu.com/p/d896ec46db66" target="_blank" rel="external">《Docker学习笔记(2)–使用Docker Hub Mirror加速Docker官方镜像下载》</a>介绍了如何通过DaoCloud提供Docker Hub Mirror服务进行镜像的加速下载。</p>
+<p>例如使用ocker Hub Mirror服务下载一个 CentOS 操作系统的镜像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dao pull centos</span><br></pre></td></tr></table></figure></p>
+<p>镜像的拉取过程如下图所示：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/222.png" alt=""></p>
+<h2 id="本地镜像"><a href="#本地镜像" class="headerlink" title="本地镜像"></a>本地镜像</h2><p>使用<code>docker images</code>显示本地已有镜像。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ymhou@ubuntu:~$ sudo docker images</span><br><span class="line">[sudo] ymhou 的密码： </span><br><span class="line">REPOSITORY                              TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">aspnet-equip2                           latest              7db79b00dfc6        13 hours ago        1.352 GB</span><br><span class="line">aspnet-equip                            latest              c43889d0c994        13 hours ago        828.2 MB</span><br><span class="line">aspnet-hello-web                        latest              0caea7860935        13 hours ago        1.228 GB</span><br><span class="line">ubuntu                                  14.04               c8ceaee85d23        5 days ago          188 MB</span><br><span class="line">hello-world                             latest              c54a2cc56cbb        3 weeks ago         1.848 kB</span><br><span class="line">microsoft/aspnet                        latest              137814287352        5 weeks ago         815.2 MB</span><br><span class="line">daocloud.io/daocloud/daocloud-toolset   latest              1ab33797d8a1        3 months ago        150.2 MB</span><br><span class="line">training/webapp                         latest              694deee4f65f        14 months ago       348.8 MB</span><br><span class="line">training/postgres                       latest              ed8be1ec6753        2 years ago         364.6 MB</span><br></pre></td></tr></table></figure></p>
+<p>其中包含了如下信息：仓库，标记，ID，创建时间，大小。</p>
+<blockquote>
+<p>其中镜像的 ID 唯一标识了镜像;<br>TAG 信息用来标记来自同一个仓库的不同镜像。例如 ubuntu 仓库中有多个镜像，通过 TAG 信息来区分发行版本，例如 10.04、12.04、12.10、13.04、14.04 等。</p>
+</blockquote>
+<h2 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h2><p>Docker的特点之一是人们创建了各种各样的docker镜像。而且这些镜像已经被上传到了Docker Hub。我们可以从Docker Hub网站来搜索镜像；同样的，之前我们提到的DaoCloud也提供了镜像搜索服务。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160728161017.png" alt="Docker Hub"><br><img src="http://7xv676.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160728161149.png" alt="DaoCloud"></p>
+<p>我们也可以使用<code>docker search</code>命令来搜索镜像:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker search [server/]registry[:tag]</span><br></pre></td></tr></table></figure></p>
+<p>当未指定server时，默认从官方仓库注册服务器搜索，当未指定tag时，默认为latest版本镜像。比如搜索<code>mysql</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ymhou@ubuntu:~$ sudo docker search mysql</span><br><span class="line">[sudo] ymhou 的密码： </span><br><span class="line">NAME                       DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                      MySQL is a widely used, open-source relati...   2748      [OK]       </span><br><span class="line">mysql/mysql-server         Optimized MySQL Server Docker images. Crea...   177                  [OK]</span><br><span class="line">centurylink/mysql          Image containing mysql. Optimized to be li...   46                   [OK]</span><br><span class="line">sameersbn/mysql                                                            36                   [OK]</span><br><span class="line">appcontainers/mysql        Centos/Debian Based Customizable MySQL Con...   8                    [OK]</span><br><span class="line">marvambass/mysql           MySQL Server based on Ubuntu 14.04              6                    [OK]</span><br><span class="line">alterway/mysql             Docker Mysql                                    2                    [OK]</span><br><span class="line">drupaldocker/mysql         MySQL for Drupal                                2                    [OK]</span><br><span class="line">azukiapp/mysql             Docker image to run MySQL by Azuki - http:...   2                    [OK]</span><br><span class="line">yfix/mysql                 Yfix docker built mysql                         2                    [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>我们看到了返回了大量的<code>mysql</code>镜像。我们看到列表中有镜像名称、描述、Stars(衡量镜像的流行程度-如果用户喜欢这个镜像他就会点击stars)和官方自动构建镜像状态。</p>
+<h2 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h2><p>如果在官方服务器上没有自己需要的镜像，我们可以自己创建一个新的镜像。创建镜像有三种方法。</p>
+<h3 id="修改已有镜像"><a href="#修改已有镜像" class="headerlink" title="修改已有镜像"></a>修改已有镜像</h3><p>首先利用已有镜像创建容器，然后在容器里面完成我们需要的操作，最后将新的容器使用<code>dockercommit</code>提交到本地镜像库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker commit -m &quot;commit information&quot; -a &quot;user information&quot; Container_ID Image:Tag</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>其中，<code>-m</code> 来指定提交的说明信息，跟我们使用的版本控制工具一样；<code>-a</code> 可以指定更新的用户信息；之后是用来创建镜像的容器的 ID；最后指定目标镜像的仓库名和 tag 信息。创建成功后会返回这个镜像的 ID 信息。</p>
+</blockquote>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker commit -m &quot;add new file&quot; -a &quot;ymhou&quot; 0b2616b0e5a8 mysql-db:v2</span><br><span class="line">4f177bd27a9ff0f6dc2a830403925b5360bfe0b93d476f7fc3231110e7f71b1c</span><br></pre></td></tr></table></figure></p>
+<h3 id="利用Dockerfile创建镜像"><a href="#利用Dockerfile创建镜像" class="headerlink" title="利用Dockerfile创建镜像"></a>利用Dockerfile创建镜像</h3><p>首先生成一个创建镜像的Dockerfile文件，包含一些如何创建镜像的指令，然后运行<code>docker build</code>命令创建镜像。<br>比如下面的Dockerfile文件：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ymhou@ubuntu:~/equip$ <span class="keyword">vim</span> Dockerfile </span><br><span class="line"></span><br><span class="line">From microsoft/aspnet</span><br><span class="line"></span><br><span class="line">COPY . /app</span><br><span class="line">WORKDIR /app</span><br><span class="line">RUN [<span class="string">"dnu"</span>,<span class="string">"restore"</span>]</span><br><span class="line"></span><br><span class="line">EXPOSE <span class="number">5004</span></span><br><span class="line">ENTRYPOINT [<span class="string">"dnx"</span>,<span class="string">"-p"</span>,<span class="string">"project.json"</span>,<span class="string">"web"</span>]</span><br></pre></td></tr></table></figure></p>
+<p>编写完成 Dockerfile 后可以使用 <code>docker build</code> 来生成镜像。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker build -t=&quot;aspnet-mvc:v2&quot; .</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>其中 <code>-t</code> 标记来添加 tag，指定新的镜像的用户信息。 <code>“.”</code> 是 Dockerfile 所在的路径（当前目录），也可以替换为一个具体的 Dockerfile 的路径。</p>
+</blockquote>
+<p>###从本地文件系统导入<br>如果为从容器生成的镜像则使用<code>docker import</code>导入，如果为从镜像导出的镜像，则使用<code>docker load</code>导入。</p>
+<h2 id="导出和载入镜像"><a href="#导出和载入镜像" class="headerlink" title="导出和载入镜像"></a>导出和载入镜像</h2><h3 id="导出镜像"><a href="#导出镜像" class="headerlink" title="导出镜像"></a>导出镜像</h3><p>如果要导出镜像到本地文件，可以使用 <code>docker save</code> 命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker save -o ubuntu14.04.tar ubuntu:14.04</span><br></pre></td></tr></table></figure></p>
+<h3 id="载入镜像"><a href="#载入镜像" class="headerlink" title="载入镜像"></a>载入镜像</h3><p>可以使用 <code>docker load</code> 从导出的本地文件中再导入到本地镜像库，例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker load --input ubuntu14.04.tar</span><br></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker load &lt; ubuntu14.04.tar</span><br></pre></td></tr></table></figure></p>
+<h2 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h2><p>使用<code>docker rmi</code>命令删除本地镜像。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ymhou@ubuntu:~/equip$ sudo docker images</span><br><span class="line">REPOSITORY                              TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">aspnet-equip2                           latest              7db79b00dfc6        17 hours ago        1.352 GB</span><br><span class="line">aspnet-equip                            latest              c43889d0c994        18 hours ago        828.2 MB</span><br><span class="line">aspnet-hello-web                        latest              0caea7860935        18 hours ago        1.228 GB</span><br><span class="line">ubuntu                                  14.04               c8ceaee85d23        5 days ago          188 MB</span><br><span class="line">hello-world                             latest              c54a2cc56cbb        3 weeks ago         1.848 kB</span><br><span class="line">microsoft/aspnet                        latest              137814287352        5 weeks ago         815.2 MB</span><br><span class="line">daocloud.io/daocloud/daocloud-toolset   latest              1ab33797d8a1        3 months ago        150.2 MB</span><br><span class="line">training/webapp                         latest              694deee4f65f        14 months ago       348.8 MB</span><br><span class="line">training/postgres                       latest              ed8be1ec6753        2 years ago         364.6 MB</span><br><span class="line">ymhou@ubuntu:~/equip$ sudo docker rmi aspnet-equip</span><br><span class="line">Untagged: aspnet-equip:latest</span><br><span class="line">Deleted: sha256:c43889d0c994d425a6cc4ec5333186c4aa771a7b82325a698254b95edc4ea1fa</span><br><span class="line">Deleted: sha256:aee0abb3d94c523b30df01cbb4465b49d63cf2159696d6383bb2d079d6aa10e7</span><br><span class="line">Deleted: sha256:411d2ea3ecbc324a13d1c72b6103e20a996d99954b15eb91b3130623323794d2</span><br><span class="line">Deleted: sha256:d06161776c4b435c672fed1ee6ac54013781d253ba58581cb2cf4263aa4ca311</span><br><span class="line">Deleted: sha256:5b601853e6b6ca283954848d460cecb1b385269dea98c19e59193e256e4124c9</span><br><span class="line">Deleted: sha256:9409ca5cff2757904d32b3a887e171bc8ad2a0d537996d4f4da50adc491e20d4</span><br><span class="line">Deleted: sha256:aa488445dd361a59d30361bd5849fc4b61763dd577436066945f67b74d5823cf</span><br></pre></td></tr></table></figure></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p><a href="http://tech.365rili.com/?p=41" target="_blank" rel="external">http://tech.365rili.com/?p=41</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/index.html" target="_blank" rel="external">https://yeasy.gitbooks.io/docker_practice/content/index.html</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://7xv676.com1.z0.glb.clouddn.com/1465308808.png" alt="GeekMonKey WeChat Pay"/>
+          <p>订阅我的博客</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xv676.com1.z0.glb.clouddn.com/mmqrcode1465308879044.png" alt="GeekMonKey Alipay"/>
+          <p>加我微信私聊</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+          
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/27/docker3-what-the-image-container/" rel="next" title="Docker学习笔记(3)--什么是Docker镜像、容器和仓库？">
+                <i class="fa fa-chevron-left"></i> Docker学习笔记(3)--什么是Docker镜像、容器和仓库？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/28/docker4-images/"
+           data-title="Docker学习笔记(4)--镜像篇" data-url="http://ymhou.github.com/2016/07/28/docker4-images/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xv676.com1.z0.glb.clouddn.com/JPEG_20160527_140907_-206264615%20(1).jpg"
+               alt="GeekMonKey" />
+          <p class="site-author-name" itemprop="name">GeekMonKey</p>
+          <p class="site-description motion-element" itemprop="description">好记性不如烂笔头</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ymhou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=29143205" target="_blank" title="网易云音乐">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  网易云音乐
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2336672733/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:silencehym@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://geekmonkey.dzxs-dl.com" title="极客猴儿" target="_blank">极客猴儿</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取镜像"><span class="nav-number">2.</span> <span class="nav-text">获取镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从Docker-Hub仓库获取"><span class="nav-number">2.1.</span> <span class="nav-text">从Docker Hub仓库获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从Docker-Hub-Mirror获取"><span class="nav-number">2.2.</span> <span class="nav-text">从Docker Hub Mirror获取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地镜像"><span class="nav-number">3.</span> <span class="nav-text">本地镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索镜像"><span class="nav-number">4.</span> <span class="nav-text">搜索镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建镜像"><span class="nav-number">5.</span> <span class="nav-text">创建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改已有镜像"><span class="nav-number">5.1.</span> <span class="nav-text">修改已有镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用Dockerfile创建镜像"><span class="nav-number">5.2.</span> <span class="nav-text">利用Dockerfile创建镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导出和载入镜像"><span class="nav-number">6.</span> <span class="nav-text">导出和载入镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导出镜像"><span class="nav-number">6.1.</span> <span class="nav-text">导出镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#载入镜像"><span class="nav-number">6.2.</span> <span class="nav-text">载入镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除本地镜像"><span class="nav-number">7.</span> <span class="nav-text">删除本地镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">8.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GeekMonKey</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ymhou"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
