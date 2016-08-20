@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OSC," />
+  <meta name="keywords" content="Docker,Shadowsocks," />
 
 
 
@@ -84,20 +84,21 @@
 
 
 
-<meta name="description" content="很早就听说开源中国要在沈阳办OSC源创会，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。">
+<meta name="description" content="搭建背景说出来你们可能不信，笔者本次搭建Shadowsocks服务器并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2016沈阳OSC源创会小记">
-<meta property="og:url" content="http://ymhou.github.com/2016/06/21/OSC-2016-shenyang/index.html">
+<meta property="og:title" content="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器">
+<meta property="og:url" content="http://ymhou.github.com/2016/08/20/docker-use1-shadowsocks/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="很早就听说开源中国要在沈阳办OSC源创会，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。">
-<meta property="og:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/111942_k2i4_2686220.jpg">
-<meta property="og:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/112502_HQP1_2686220.jpg">
-<meta property="og:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/120243_EKfR_2686220.jpg">
-<meta property="og:updated_time" content="2016-06-21T14:17:40.243Z">
+<meta property="og:description" content="搭建背景说出来你们可能不信，笔者本次搭建Shadowsocks服务器并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/27500205.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/97403250.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/55576699.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/65911524.jpg">
+<meta property="og:updated_time" content="2016-08-20T14:24:24.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2016沈阳OSC源创会小记">
-<meta name="twitter:description" content="很早就听说开源中国要在沈阳办OSC源创会，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。">
-<meta name="twitter:image" content="http://7xn8bp.com1.z0.glb.clouddn.com/111942_k2i4_2686220.jpg">
+<meta name="twitter:title" content="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器">
+<meta name="twitter:description" content="搭建背景说出来你们可能不信，笔者本次搭建Shadowsocks服务器并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/27500205.jpg">
 
 
 
@@ -115,7 +116,7 @@
   };
 </script>
 
-  <title> 2016沈阳OSC源创会小记 | GeekMonKey's Blog </title>
+  <title> Docker实战(1)——使用Docker快速搭建Shadowsocks服务器 | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +276,7 @@
             
             
               
-                2016沈阳OSC源创会小记
+                Docker实战(1)——使用Docker快速搭建Shadowsocks服务器
               
             
           </h1>
@@ -287,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-21T22:06:47+08:00" content="2016-06-21">
-              2016-06-21
+            <time itemprop="dateCreated" datetime="2016-08-20T22:22:38+08:00" content="2016-08-20">
+              2016-08-20
             </time>
           </span>
 
@@ -301,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
                   </a>
                 </span>
 
@@ -317,8 +318,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/21/OSC-2016-shenyang/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/21/OSC-2016-shenyang/" itemprop="commentsCount"></span>
+                <a href="/2016/08/20/docker-use1-shadowsocks/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/20/docker-use1-shadowsocks/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,29 +342,36 @@
       
 
       
-        <p>很早就听说<code>开源中国</code>要在沈阳办<strong>OSC源创会</strong>，也是开源中国第一次来大东北举办线下活动，算是非常幸运的赶上了。原本50的门票这次也没有收取任何费用，全部免费，迫不及待的拉上小伙伴们一起报了名。源创会时间安排也比较合理，6月19号周日下午2点开始，不巧的是刚好和实验室的计算机控制实验考试时间上有点小冲突，所幸的是2点半结束了实验答辩，和实验室的小伙伴搭地铁马不停蹄的赶往会场。<br><a id="more"></a><br>到了格林饭店的会议厅的时候第一场分享已经结束了，错过了我比较感兴趣的<code>树莓派</code>报告，有点遗憾，不过报告ppt全都收集了。本期的主题一共有4个：</p>
-<blockquote>
-<p>1.树莓派机器人和机器学习</p>
-<p>内容简介：1.计算设备发展方向-树莓派。2.机器人大脑=树莓派+机器学习+传感器3.机器学习如何调整参数（以无人机作为参考) 4.机器学习在训练机器人上的缺点。</p>
-<p>分享嘉宾：刘端阳，MBH树莓派智能机器人俱乐部创始人。</p>
-<p>2.云时代的企业运维转型</p>
-<p>内容简介：随着云的概念逐步被接受，很多企业开始尝试公有云，这给传统运维模式带来了一系列的变化，例如跨云的管理、虚拟化及容器化带来的操作单元暴增、运维职能被部分新技术所取代，运维如何探索职能边界的延伸、运维如何利用云及大数据技术帮助业务实现精细化运营。</p>
-<p>分享嘉宾：杨文兵，腾讯蓝鲸运营经理，资深应用运维&amp;DevOps。先后担任腾讯游戏地下城与勇士、穿越火线、七雄争霸等不同类型游戏的运维负责人。蓝鲸体系首批DevOps，在蓝鲸中开发过多套支撑工具和运营系统。</p>
-<p>3.分布式定时任务调度系统</p>
-<p>内容简介：分布式定时调度框架：是一套可在分布式集群环境中运行的定时任务，具有扩展性高、支持水平扩展，  提供系统化管理操作后台界面，提供监控报警功能，任务支持单机模式和分布式模式运行，支持ip过滤，任务支持灾难重现，以及支持大数据作业管理等功能。</p>
-<p>分享嘉宾：stark_summer ，MBH俱乐部爱好者，专注于分布式计算、消息队列、大数据相关技术(如spark，hadoop，hbase,storm等)以及机器学习。</p>
-<p>4.企业应用的开发思路及开源的价值</p>
-<p>内容简介：介绍新一代企业应用的 “轻量化、模块化、移动化”开发思路，介绍基于YII框架的可配置化实现功能模块的安装与卸载，用RBAC权限构建企业应用的多维权限体系，分享IBOS开源路上的得与失。</p>
-<p>分享嘉宾：杨芳贤，IBOS创始人。专注2B企业应用开发十余年，历届SDCC软件大会、微信开发者大会演讲嘉宾，长期活跃于GitHub、开源中国等开源社区，有着丰富的互联网产品设计经验及开发经验。</p>
-</blockquote>
-<p>总而言之报告还是蛮不错的，不仅仅分享了技术，还分享了开源公司的商业模式，当然，也见到了传说中的开源中国的<code>红薯</code>。虽然很多地方不明觉厉但还是感觉收获了一些干货吧，完全不同于实验室邀请的一些大牛来实验室做学术报告的感觉。</p>
-<p><img src="http://7xn8bp.com1.z0.glb.clouddn.com/111942_k2i4_2686220.jpg" alt=""></p>
-<p><img src="http://7xn8bp.com1.z0.glb.clouddn.com/112502_HQP1_2686220.jpg" alt=""></p>
-<p><img src="http://7xn8bp.com1.z0.glb.clouddn.com/120243_EKfR_2686220.jpg" alt="红薯"></p>
-<p>最后献上本次沈阳站源创会的演讲PPT下载链接：<br>1.云时代的企业运维转型——杨文兵 <a href="http://www.oschina.net/doc/39136" target="_blank" rel="external">PPT分享</a></p>
-<p>2.树莓派机器人和机器学习——刘端阳  <a href="http://www.oschina.net/doc/39138" target="_blank" rel="external">PPT分享</a></p>
-<p>3.企业应用的开发思路及开源的价值——杨芳贤  <a href="http://www.oschina.net/doc/39143" target="_blank" rel="external">PPT分享</a></p>
-<p>4.分布式定时调度系统——stark_summer   <a href="http://www.oschina.net/doc/39144" target="_blank" rel="external">PPT分享</a></p>
+        <h2 id="搭建背景"><a href="#搭建背景" class="headerlink" title="搭建背景"></a>搭建背景</h2><p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/27500205.jpg" alt=""><br>说出来你们可能不信，笔者本次搭建<code>Shadowsocks服务器</code>并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（<em>可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi信号进行上网了吗？……好吧，我就是不想给台式机上一直插一个那么丑的东西</em>），所以我这次搭建<code>Shadowsocks服务器</code>仅仅是为了让两台机器能够同时上网。<strong>当然了，需要搭建科学上网服务器的同学也可以按照下面的搭建步骤进行哦，前提是你需要有一台国外的Docker服务器。</strong></p>
+<p>最开始我是想采用Windows自带的服务搭建<code>VPN</code>服务器，把台式机当作服务器，把笔记本当作客户机，理论上就可以将笔记本接入台式机的<code>VPN服务</code>访问外网了，听起来蛮不错的吧。</p>
+<p>转念一想，我之前在实验室的云服务器上开过一台<code>Ubuntu</code>的虚拟机，何不在上面搭建一个<code>Shadowsocks服务器</code>呢（这样还有一个好处就是我出差或回家的时候仍然可以登录上SS到知网上下载论文了，哈哈）。当然了，虽然直接在<code>Ubuntu</code>上搭建SS服务器也挺简单的，但是这次想着还是结合下之前自学的东西吧，于是就引出了今天所写的<strong>使用Docker快速搭建Shadowsocks服务器</strong>。</p>
+<p>OK，废话少说，详细写下这个非常简单的搭建过程吧。<br><a id="more"></a></p>
+<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><ol>
+<li>Ubuntu主机一台</li>
+<li>安装Docker</li>
+<li>Shadowsocks客户端</li>
+</ol>
+<h2 id="安装-Shadowsocks"><a href="#安装-Shadowsocks" class="headerlink" title="安装 Shadowsocks"></a>安装 Shadowsocks</h2><h3 id="拉取docker-shadowsocks镜像"><a href="#拉取docker-shadowsocks镜像" class="headerlink" title="拉取docker-shadowsocks镜像"></a>拉取docker-shadowsocks镜像</h3><p>拉取docker-shadowsocks镜像镜像安装，从 Docker Hub 仓库拉取命令如下（笔者未使用）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull oddrationale/docker-shadowsocks</span><br></pre></td></tr></table></figure></p>
+<p>在这里笔者通过DaoCloud提供Docker Hub Mirror服务进行镜像的加速下载（在<a href="http://www.jianshu.com/p/d896ec46db66" target="_blank" rel="external">《Docker学习笔记(2)–使用Docker Hub Mirror加速Docker官方镜像下载》</a>介绍过），命令如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dao pull oddrationale/docker-shadowsocks</span><br></pre></td></tr></table></figure></p>
+<p>安装完成后如下图所示：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/97403250.jpg" alt=""></p>
+<h3 id="配置docker-shadowsocks"><a href="#配置docker-shadowsocks" class="headerlink" title="配置docker-shadowsocks"></a>配置docker-shadowsocks</h3><p>输入如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 54285:54285 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 54285 -k yourpasswd -m aes-256-cfb</span><br></pre></td></tr></table></figure></p>
+<p>其中，</p>
+<ul>
+<li><code>-d</code>——容器启动后会进入后台</li>
+<li><code>-p（第一个）</code>——指定要映射的端口，使用的格式是<code>hostPort:containerPort</code>，即本地的 54285 端口映射到容器的 54285 端口</li>
+<li><code>-s</code>——服务器IP</li>
+<li><code>-p（第二个）</code>——代理端口</li>
+<li><code>yourpasswd</code>——你的密码</li>
+<li><code>-m</code>——加密方式</li>
+</ul>
+<p>检查一下 SS 是否已经安装成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure></p>
+<p>可以看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID        IMAGE                             COMMAND                  CREATED             STATUS              PORTS                      </span><br><span class="line">10ef831c1904        oddrationale/docker-shadowsocks   &quot;/usr/local/bin/ssser&quot;   4 seconds ago       Up 3 seconds        0.0.0.0:54285-&gt;54285/tcp</span><br></pre></td></tr></table></figure></p>
+<p>说明服务器端已经配置成功。</p>
+<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>下载Shadowsocks客户端，可以从 <a href="www.ishadowsocks.org">ISS</a> 网站进行下载。</p>
+<p>以 Shadowsocks for Windows 客户端 为例，安装好后添加服务器配置：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/55576699.jpg" alt=""></p>
+<p>填上 ip 地址，端口，密码，密码就是刚刚的 <code>yourpasswd</code>,点击确定。</p>
+<p>其实至此正常来说已经配置完毕了，但我这次毕竟不是配置科学上网，是要通过SS来访问Ubuntu进行正常上网的，因此在托盘中需要将<code>系统代理模式</code>修改为<code>全局代理</code>才能够正常上网。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/65911524.jpg" alt=""></p>
+<p>OK，简单的几步就配置完毕了，在托盘中选择<code>启用系统代理</code>,嗯哼,笔记本可以正常上网了（而且走的是云服务器的校园网流量，不花钱的哟，好开心~）</p>
 
       
     </div>
@@ -406,7 +414,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OSC/" rel="tag">#OSC</a>
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
+          
+            <a href="/tags/Shadowsocks/" rel="tag">#Shadowsocks</a>
           
         </div>
       
@@ -415,17 +425,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/10/rtsp-haikang-Ip-camare/" rel="next" title="使用rtsp协议访问海康IP摄像头">
-                <i class="fa fa-chevron-left"></i> 使用rtsp协议访问海康IP摄像头
+              <a href="/2016/08/19/java-use-static/" rel="next" title="Java中的static使用">
+                <i class="fa fa-chevron-left"></i> Java中的static使用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/02/WebApi-use-Asp-Net-Identity/" rel="prev" title="WebApi中使用 Asp.Net Identity 进行身份认证">
-                WebApi中使用 Asp.Net Identity 进行身份认证 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -454,8 +460,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/21/OSC-2016-shenyang/"
-           data-title="2016沈阳OSC源创会小记" data-url="http://ymhou.github.com/2016/06/21/OSC-2016-shenyang/">
+      <div class="ds-thread" data-thread-key="2016/08/20/docker-use1-shadowsocks/"
+           data-title="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器" data-url="http://ymhou.github.com/2016/08/20/docker-use1-shadowsocks/">
       </div>
     
   </div>
@@ -598,7 +604,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建背景"><span class="nav-number">1.</span> <span class="nav-text">搭建背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前置条件"><span class="nav-number">2.</span> <span class="nav-text">前置条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Shadowsocks"><span class="nav-number">3.</span> <span class="nav-text">安装 Shadowsocks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉取docker-shadowsocks镜像"><span class="nav-number">3.1.</span> <span class="nav-text">拉取docker-shadowsocks镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置docker-shadowsocks"><span class="nav-number">3.2.</span> <span class="nav-text">配置docker-shadowsocks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端配置"><span class="nav-number">4.</span> <span class="nav-text">客户端配置</span></a></li></ol></div>
             
           </div>
         </section>
