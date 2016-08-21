@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java," />
+  <meta name="keywords" content="数字图像处理," />
 
 
 
@@ -84,42 +84,20 @@
 
 
 
-<meta name="description" content="静态方法
-静态方法中可以直接调用同类中的静态成员，但不能直接调用非静态成员。如果希望在静态方法中调用非静态变量，可以通过创建类的对象，然后通过对象来访问非静态变量。
-
-在普通成员方法中，则可以直接访问同类的非静态变量和静态变量
-
-静态方法中不能直接调用非静态方法，需要通过对象来访问非静态方法。
-
-
-123456789101112131415//普通成员方法public void show()&amp;#1">
+<meta name="description" content="理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h(i,j)=1;        else">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中的static使用">
-<meta property="og:url" content="http://ymhou.github.com/2016/08/19/java-use-static/index.html">
+<meta property="og:title" content="几种滤波器Matlab程序">
+<meta property="og:url" content="http://ymhou.github.com/2016/08/21/matlab-images-filter/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="静态方法
-静态方法中可以直接调用同类中的静态成员，但不能直接调用非静态成员。如果希望在静态方法中调用非静态变量，可以通过创建类的对象，然后通过对象来访问非静态变量。
-
-在普通成员方法中，则可以直接访问同类的非静态变量和静态变量
-
-静态方法中不能直接调用非静态方法，需要通过对象来访问非静态方法。
-
-
-123456789101112131415//普通成员方法public void show()&amp;#1">
-<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-19/1323541.jpg">
-<meta property="og:updated_time" content="2016-08-19T07:32:18.814Z">
+<meta property="og:description" content="理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h(i,j)=1;        else">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/51779946.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/57515885.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/86168309.jpg">
+<meta property="og:updated_time" content="2016-08-21T11:52:19.505Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中的static使用">
-<meta name="twitter:description" content="静态方法
-静态方法中可以直接调用同类中的静态成员，但不能直接调用非静态成员。如果希望在静态方法中调用非静态变量，可以通过创建类的对象，然后通过对象来访问非静态变量。
-
-在普通成员方法中，则可以直接访问同类的非静态变量和静态变量
-
-静态方法中不能直接调用非静态方法，需要通过对象来访问非静态方法。
-
-
-123456789101112131415//普通成员方法public void show()&amp;#1">
-<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-19/1323541.jpg">
+<meta name="twitter:title" content="几种滤波器Matlab程序">
+<meta name="twitter:description" content="理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h(i,j)=1;        else">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/51779946.jpg">
 
 
 
@@ -137,7 +115,7 @@
   };
 </script>
 
-  <title> Java中的static使用 | GeekMonKey's Blog </title>
+  <title> 几种滤波器Matlab程序 | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -297,7 +275,7 @@
             
             
               
-                Java中的static使用
+                几种滤波器Matlab程序
               
             
           </h1>
@@ -309,8 +287,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T14:26:30+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2016-08-21T17:44:00+08:00" content="2016-08-21">
+              2016-08-21
             </time>
           </span>
 
@@ -339,8 +317,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/19/java-use-static/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/19/java-use-static/" itemprop="commentsCount"></span>
+                <a href="/2016/08/21/matlab-images-filter/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/matlab-images-filter/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -363,25 +341,13 @@
       
 
       
-        <h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><ol>
-<li><p>静态方法中可以直接调用同类中的静态成员，但不能直接调用非静态成员。<br>如果希望在静态方法中调用非静态变量，可以通过创建类的对象，然后通过对象来访问非静态变量。</p>
-</li>
-<li><p>在普通成员方法中，则可以直接访问同类的非静态变量和静态变量</p>
-</li>
-<li><p>静态方法中不能直接调用非静态方法，需要通过对象来访问非静态方法。</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//普通成员方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line"><span class="comment">//静态方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"hello kitty"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="comment">//普通成员方法必须通过对象来调用</span></span><br><span class="line">    HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">    hello.show();</span><br><span class="line">    <span class="comment">//可以直接调用静态方法</span></span><br><span class="line">    print();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="静态初始化块"><a href="#静态初始化块" class="headerlink" title="静态初始化块"></a>静态初始化块</h2><p><strong>静态初始化块只在类加载时执行，且只会执行一次，同时静态初始化块只能给静态变量赋值，不能初始化普通的成员变量。</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num1;</span><br><span class="line">    <span class="keyword">int</span> num2;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> num3;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloWorld</span><span class="params">()</span></span>&#123;</span><br><span class="line">        num1=<span class="number">91</span>;</span><br><span class="line">        System.out.println(<span class="string">"通过构造方法为变量num1赋值"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;<span class="comment">//初始化块</span></span><br><span class="line">        num2=<span class="number">74</span>;</span><br><span class="line">        System.out.println(<span class="string">"通过初始化块为变量num2赋值"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;<span class="comment">//静态初始化块</span></span><br><span class="line">        num3 = <span class="number">83</span>;</span><br><span class="line">        System.out.println(<span class="string">"通过静态初始化块为变量num3赋值"</span>);       </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">        System.out.println(<span class="string">"num1:"</span>+hello.num1);</span><br><span class="line">        System.out.println(<span class="string">"num2:"</span>+hello.num2);</span><br><span class="line">        System.out.println(<span class="string">"num3:"</span>+num3);</span><br><span class="line"></span><br><span class="line">        HelloWorld hello2 = <span class="keyword">new</span> HelloWorld();  <span class="comment">//再创建类的对象hello2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代码执行结果如下图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-19/1323541.jpg" alt=""></p>
-<p>通过输出结果，我们可以看到，程序运行时静态初始化块最先被执行，然后执行普通初始化块，最后才执行构造方法。<br>由于静态初始化块只在类加载时执行一次，所以当再次创建对象 hello2 时并未执行静态初始化块。</p>
-<h2 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h2><p>静态内部类是 static 修饰的内部类，这种内部类的特点是：</p>
-<ol>
-<li>静态内部类不能直接访问外部类的非静态成员，但可以通过 <code>new 外部类().成员</code> 的方式访问 </li>
-<li>如果外部类的静态成员与内部类的成员名称相同，可通过“类名.静态成员”访问外部类的静态成员；如果外部类的静态成员与内部类的成员名称不相同，则可通过“成员名”直接调用外部类的静态成员</li>
-<li>创建静态内部类的对象时，不需要外部类的对象，可以直接创建 <code>内部类 对象名= new 内部类()</code>;</li>
-</ol>
+        <a id="more"></a>
+<h2 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">M=<span class="number">256</span>;</span><br><span class="line">N=<span class="number">256</span>;</span><br><span class="line">d0=<span class="number">50</span>;</span><br><span class="line">m=<span class="built_in">fix</span>(M/<span class="number">2</span>);</span><br><span class="line">n=<span class="built_in">fix</span>(N/<span class="number">2</span>);</span><br><span class="line"><span class="comment">%h=zeros(256,256);</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:M</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:N</span><br><span class="line">        d=<span class="built_in">sqrt</span>((<span class="built_in">i</span>-m)^<span class="number">2</span>+(<span class="built_in">j</span>-n)^<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span>(d&lt;=d0)</span><br><span class="line">            h(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            h(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">mesh(h)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/51779946.jpg" alt=""></p>
+<h2 id="巴特沃斯低通滤波器"><a href="#巴特沃斯低通滤波器" class="headerlink" title="巴特沃斯低通滤波器"></a>巴特沃斯低通滤波器</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">clear;</span><br><span class="line">M=<span class="number">256</span>;</span><br><span class="line">N=<span class="number">256</span>;</span><br><span class="line">d0=<span class="number">50</span>;</span><br><span class="line">n=<span class="number">2</span>;</span><br><span class="line">m=<span class="built_in">fix</span>(M/<span class="number">2</span>);</span><br><span class="line">n=<span class="built_in">fix</span>(N/<span class="number">2</span>);</span><br><span class="line"><span class="comment">%h=zeros(256,256);</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:M</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:N</span><br><span class="line">        d=<span class="built_in">sqrt</span>((<span class="built_in">i</span>-m)^<span class="number">2</span>+(<span class="built_in">j</span>-n)^<span class="number">2</span>);</span><br><span class="line">        h(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">1</span>/(<span class="number">1</span>+<span class="number">0.414</span>*(d/d0)^(<span class="number">2</span>*<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">mesh(h)</span><br><span class="line">axis off</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/57515885.jpg" alt=""></p>
+<h2 id="高斯低通滤波器"><a href="#高斯低通滤波器" class="headerlink" title="高斯低通滤波器"></a>高斯低通滤波器</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">clc;clear;</span><br><span class="line">M=<span class="number">256</span>;</span><br><span class="line">N=<span class="number">256</span>;</span><br><span class="line">d0=<span class="number">50</span>;</span><br><span class="line">m=<span class="built_in">fix</span>(M/<span class="number">2</span>);</span><br><span class="line">n=<span class="built_in">fix</span>(N/<span class="number">2</span>);</span><br><span class="line"><span class="comment">%h=zeros(256,256);</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:M</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:N</span><br><span class="line">        d=<span class="built_in">sqrt</span>((<span class="built_in">i</span>-m)^<span class="number">2</span>+(<span class="built_in">j</span>-n)^<span class="number">2</span>);</span><br><span class="line">        h(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="built_in">exp</span>(-(d^<span class="number">2</span>)/(<span class="number">2</span>*(d0^<span class="number">2</span>)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">mesh(h)</span><br><span class="line">axis off</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/86168309.jpg" alt=""></p>
 
       
     </div>
@@ -424,7 +390,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag">#java</a>
+            <a href="/tags/数字图像处理/" rel="tag">#数字图像处理</a>
           
         </div>
       
@@ -433,16 +399,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/18/free-domain-to-weibo/" rel="next" title="如何将自己的微博主页/简书主页绑定免费顶级域名">
-                <i class="fa fa-chevron-left"></i> 如何将自己的微博主页/简书主页绑定免费顶级域名
+              <a href="/2016/08/20/docker-use1-shadowsocks/" rel="next" title="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器">
+                <i class="fa fa-chevron-left"></i> Docker实战(1)——使用Docker快速搭建Shadowsocks服务器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/20/docker-use1-shadowsocks/" rel="prev" title="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器">
-                Docker实战(1)——使用Docker快速搭建Shadowsocks服务器 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/21/hybrid-images/" rel="prev" title="浅尝图像处理——Hybrid images">
+                浅尝图像处理——Hybrid images <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -472,8 +438,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/19/java-use-static/"
-           data-title="Java中的static使用" data-url="http://ymhou.github.com/2016/08/19/java-use-static/">
+      <div class="ds-thread" data-thread-key="2016/08/21/matlab-images-filter/"
+           data-title="几种滤波器Matlab程序" data-url="http://ymhou.github.com/2016/08/21/matlab-images-filter/">
       </div>
     
   </div>
@@ -616,7 +582,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#静态方法"><span class="nav-number">1.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态初始化块"><span class="nav-number">2.</span> <span class="nav-text">静态初始化块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态内部类"><span class="nav-number">3.</span> <span class="nav-text">静态内部类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理想低通滤波器"><span class="nav-number">1.</span> <span class="nav-text">理想低通滤波器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巴特沃斯低通滤波器"><span class="nav-number">2.</span> <span class="nav-text">巴特沃斯低通滤波器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯低通滤波器"><span class="nav-number">3.</span> <span class="nav-text">高斯低通滤波器</span></a></li></ol></div>
             
           </div>
         </section>

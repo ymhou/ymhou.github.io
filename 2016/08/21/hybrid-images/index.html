@@ -1,0 +1,757 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="-- 数字图像处理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言其实数字图像处理并不是我的研究方向，仅仅是因为在开题中简单提到了基于图像的设备安全监控，就这样被导师安排去学习图像处理的相关知识。
+Orz……好吧，假期回家还不到两周就这样匆匆忙忙的提前赶回了学校，和实验室三维重建方向的的筒子们一起去上美国罗文大学唐瑛（Ying (Gina) Tang）教授开设的数字图像处理入门课程。这周从周一到周三一共上了三节大课，算是简单了解了图像处理的相关内容吧，课程结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅尝图像处理——Hybrid images">
+<meta property="og:url" content="http://ymhou.github.com/2016/08/21/hybrid-images/index.html">
+<meta property="og:site_name" content="GeekMonKey's Blog">
+<meta property="og:description" content="前言其实数字图像处理并不是我的研究方向，仅仅是因为在开题中简单提到了基于图像的设备安全监控，就这样被导师安排去学习图像处理的相关知识。
+Orz……好吧，假期回家还不到两周就这样匆匆忙忙的提前赶回了学校，和实验室三维重建方向的的筒子们一起去上美国罗文大学唐瑛（Ying (Gina) Tang）教授开设的数字图像处理入门课程。这周从周一到周三一共上了三节大课，算是简单了解了图像处理的相关内容吧，课程结">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/95114607.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/42895420.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/14268845.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/53062221.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/87029101.jpg">
+<meta property="og:updated_time" content="2016-08-21T11:45:25.397Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅尝图像处理——Hybrid images">
+<meta name="twitter:description" content="前言其实数字图像处理并不是我的研究方向，仅仅是因为在开题中简单提到了基于图像的设备安全监控，就这样被导师安排去学习图像处理的相关知识。
+Orz……好吧，假期回家还不到两周就这样匆匆忙忙的提前赶回了学校，和实验室三维重建方向的的筒子们一起去上美国罗文大学唐瑛（Ying (Gina) Tang）教授开设的数字图像处理入门课程。这周从周一到周三一共上了三节大课，算是简单了解了图像处理的相关内容吧，课程结">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/95114607.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6291954834828428000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 浅尝图像处理——Hybrid images | GeekMonKey's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">GeekMonKey's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">永远年轻，永远热泪盈眶…</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/笔记/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            笔记
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-copy">
+          <a href="/categories/转载/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-copy"></i> <br />
+            
+            转载
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅尝图像处理——Hybrid images
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T19:43:36+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/21/hybrid-images/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/hybrid-images/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实数字图像处理并不是我的研究方向，仅仅是因为在开题中简单提到了基于图像的设备安全监控，就这样被导师安排去学习图像处理的相关知识。</p>
+<p>Orz……好吧，假期回家还不到两周就这样匆匆忙忙的提前赶回了学校，和实验室三维重建方向的的筒子们一起去上美国罗文大学唐瑛（Ying (Gina) Tang）教授开设的数字图像处理入门课程。这周从周一到周三一共上了三节大课，算是简单了解了图像处理的相关内容吧，课程结束后估计也就是浅尝辄止。</p>
+<p>在唐教授的安排下阅读了Oliva, Torrallaba, 和Schyns所发表的论文《Hybrid images》，今天主要写写<strong>如何用matlab将论文所提到的图像混合进行代码的实现</strong>（估计这是图像处理小白级的内容了吧，大神请无视哈~）</p>
+<p><strong>实现的整体思想比较简单，就是对两幅图像分别进行高通和低通滤波，从而将两幅图像融合到一起，同时通过修改截止频率还可以改善融合效果，这样就可以实现在近处看是其中一副图像的效果，而在远处看又是另一幅图像的效果</strong>，如下所示：</p>
+<ol>
+<li>待混合图像1<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/95114607.jpg" alt=""><a id="more"></a></li>
+<li><p>待混合图像2<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/42895420.jpg" alt=""></p>
+</li>
+<li><p>混合完成图像<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/14268845.jpg" alt=""></p>
+</li>
+</ol>
+<h2 id="matlab实现hybrid-images"><a href="#matlab实现hybrid-images" class="headerlink" title="matlab实现hybrid images"></a>matlab实现hybrid images</h2><h3 id="hybrid-images函数的编写"><a href="#hybrid-images函数的编写" class="headerlink" title="hybrid_images函数的编写"></a>hybrid_images函数的编写</h3><p>对两幅图像分别进行高通和低通滤波，其中涉及到傅里叶变换和反变换，图像混合函数所在文件<code>hybrid_images.m</code>如下：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">re</span>=<span class="title">hybrid_images</span><span class="params">(ImageFile1,ImageFile2,radius_input)</span></span></span><br><span class="line">    </span><br><span class="line">    I1=ImageFile1;</span><br><span class="line">    I2=ImageFile2;</span><br><span class="line">    ImgFileOut=<span class="string">'C:\Users\dell\Desktop\hybird_images/out.jpg'</span>;</span><br><span class="line">    </span><br><span class="line">    radius = radius_input;      </span><br><span class="line">    I1_ = fftshift(fft2(double(I1)));  <span class="comment">%进行傅里叶变换，并将零点移动到中心</span></span><br><span class="line">    I2_ = fftshift(fft2(double(I2)));</span><br><span class="line">    [m, n, z]=<span class="built_in">size</span>(I1);</span><br><span class="line">    h = fspecial(<span class="string">'gaussian'</span>, [m,n], radius);</span><br><span class="line">    h = h./max(max(h));</span><br><span class="line">    <span class="keyword">for</span> colorI = <span class="number">1</span>:<span class="number">3</span></span><br><span class="line">       J_(:,:,colorI) = I1_(:,:,colorI).*(<span class="number">1</span>-h) + I2_(:,:,colorI).*h;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    J = uint8(<span class="built_in">real</span>(ifft2(ifftshift(J_))));          <span class="comment">%反变换</span></span><br><span class="line">    imwrite(J,ImgFileOut);    <span class="comment">%图片保存到本地</span></span><br><span class="line">    re=J;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="GUI设计"><a href="#GUI设计" class="headerlink" title="GUI设计"></a>GUI设计</h3><p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/53062221.jpg" alt=""></p>
+<h3 id="GUI关键代码"><a href="#GUI关键代码" class="headerlink" title="GUI关键代码"></a>GUI关键代码</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% --- Executes on button press in pushbutton1.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pushbutton1_Callback</span><span class="params">(hObject, eventdata, handles)</span></span></span><br><span class="line"><span class="comment">% hObject    handle to pushbutton1 (see GCBO)</span></span><br><span class="line"><span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span></span><br><span class="line"><span class="comment">% handles    structure with handles and user data (see GUIDATA)</span></span><br><span class="line"><span class="keyword">global</span> im1;</span><br><span class="line">[filename,pathname]=uigetfile(&#123;<span class="string">'*.*'</span>;<span class="string">'*.bmp'</span>;<span class="string">'*.jpg'</span>;<span class="string">'*.tif'</span>;<span class="string">'*.jpg'</span>&#125;,<span class="string">'选择图像'</span>);</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isequal</span>(filename,<span class="number">0</span>)||<span class="built_in">isequal</span>(pathname,<span class="number">0</span>)</span><br><span class="line">  errordlg(<span class="string">'您还没有选取图片！！'</span>,<span class="string">'温馨提示'</span>);<span class="comment">%如果没有输入，则创建错误对话框 </span></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    image=[pathname,filename];<span class="comment">%合成路径+文件名</span></span><br><span class="line">    im1=imread(image);<span class="comment">%读取图像</span></span><br><span class="line">    set(handles.axes1,<span class="string">'HandleVisibility'</span>,<span class="string">'ON'</span>);<span class="comment">%打开坐标，方便操作</span></span><br><span class="line">    axes(handles.axes1);<span class="comment">%%使用图像，操作在坐标1</span></span><br><span class="line">    imshow(im1);<span class="comment">%在坐标axes1显示原图像 </span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% --- Executes on button press in pushbutton2.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pushbutton2_Callback</span><span class="params">(hObject, eventdata, handles)</span></span></span><br><span class="line"><span class="comment">% hObject    handle to pushbutton2 (see GCBO)</span></span><br><span class="line"><span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span></span><br><span class="line"><span class="comment">% handles    structure with handles and user data (see GUIDATA)</span></span><br><span class="line"><span class="keyword">global</span> im2;</span><br><span class="line">[filename,pathname]=uigetfile(&#123;<span class="string">'*.*'</span>;<span class="string">'*.bmp'</span>;<span class="string">'*.jpg'</span>;<span class="string">'*.tif'</span>;<span class="string">'*.jpg'</span>&#125;,<span class="string">'选择图像'</span>);</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isequal</span>(filename,<span class="number">0</span>)||<span class="built_in">isequal</span>(pathname,<span class="number">0</span>)</span><br><span class="line">  errordlg(<span class="string">'您还没有选取图片！！'</span>,<span class="string">'温馨提示'</span>);<span class="comment">%如果没有输入，则创建错误对话框 </span></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    image=[pathname,filename];<span class="comment">%合成路径+文件名</span></span><br><span class="line">    im2=imread(image);<span class="comment">%读取图像</span></span><br><span class="line">    set(handles.axes2,<span class="string">'HandleVisibility'</span>,<span class="string">'ON'</span>);<span class="comment">%打开坐标，方便操作</span></span><br><span class="line">    axes(handles.axes2);<span class="comment">%%使用图像，操作在坐标1</span></span><br><span class="line">    imshow(im2);<span class="comment">%在坐标axes1显示原图像 </span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% --- Executes on slider movement.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">slider1_Callback</span><span class="params">(hObject, eventdata, handles)</span></span></span><br><span class="line"><span class="comment">% hObject    handle to slider1 (see GCBO)</span></span><br><span class="line"><span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span></span><br><span class="line"><span class="comment">% handles    structure with handles and user data (see GUIDATA)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% Hints: get(hObject,'Value') returns position of slider</span></span><br><span class="line"><span class="comment">%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider</span></span><br><span class="line">slide_value=get(hObject,<span class="string">'Value'</span>);<span class="comment">%获取滑块当前值</span></span><br><span class="line"><span class="keyword">global</span> im1;</span><br><span class="line"><span class="keyword">global</span> im2;</span><br><span class="line">radius=slide_value;</span><br><span class="line">set(handles.edit1,<span class="string">'string'</span>,num2str(slide_value));</span><br><span class="line">x=hybrid_images(im1,im2,radius);</span><br><span class="line">set(handles.axes5,<span class="string">'HandleVisibility'</span>,<span class="string">'ON'</span>);<span class="comment">%打开坐标，方便操作</span></span><br><span class="line">axes(handles.axes5)</span><br><span class="line">imshow(x);</span><br><span class="line"></span><br><span class="line"><span class="comment">% --- Executes during object creation, after setting all properties.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">slider1_CreateFcn</span><span class="params">(hObject, eventdata, handles)</span></span></span><br><span class="line"><span class="comment">% hObject    handle to slider1 (see GCBO)</span></span><br><span class="line"><span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span></span><br><span class="line"><span class="comment">% handles    empty - handles not created until after all CreateFcns called</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% Hint: slider controls usually have a light gray background.</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isequal</span>(get(hObject,<span class="string">'BackgroundColor'</span>), get(<span class="number">0</span>,<span class="string">'defaultUicontrolBackgroundColor'</span>))</span><br><span class="line">    set(hObject,<span class="string">'BackgroundColor'</span>,[<span class="number">.9</span> <span class="number">.9</span> <span class="number">.9</span>]);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/87029101.jpg" alt=""></p>
+<h2 id="paper链接"><a href="#paper链接" class="headerlink" title="paper链接"></a>paper链接</h2><blockquote>
+<p><a href="http://cvcl.mit.edu/hybrid/OlivaTorralb\_Hybrid_Siggraph06.pdf" target="_blank" rel="external">http://cvcl.mit.edu/hybrid/OlivaTorralb\_Hybrid_Siggraph06.pdf</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://7xv676.com1.z0.glb.clouddn.com/1465308808.png" alt="GeekMonKey WeChat Pay"/>
+          <p>订阅我的博客</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xv676.com1.z0.glb.clouddn.com/mmqrcode1465308879044.png" alt="GeekMonKey Alipay"/>
+          <p>加我微信私聊</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数字图像处理/" rel="tag">#-- 数字图像处理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/21/matlab-images-filter/" rel="next" title="几种滤波器Matlab程序">
+                <i class="fa fa-chevron-left"></i> 几种滤波器Matlab程序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/21/hybrid-images/"
+           data-title="浅尝图像处理——Hybrid images" data-url="http://ymhou.github.com/2016/08/21/hybrid-images/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xv676.com1.z0.glb.clouddn.com/JPEG_20160527_140907_-206264615%20(1).jpg"
+               alt="GeekMonKey" />
+          <p class="site-author-name" itemprop="name">GeekMonKey</p>
+          <p class="site-description motion-element" itemprop="description">好记性不如烂笔头</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ymhou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=29143205" target="_blank" title="网易云音乐">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  网易云音乐
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/a0e33186e328/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:dl_hym@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://geekmonkey.dzxs-dl.com" title="极客猴儿" target="_blank">极客猴儿</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matlab实现hybrid-images"><span class="nav-number">2.</span> <span class="nav-text">matlab实现hybrid images</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hybrid-images函数的编写"><span class="nav-number">2.1.</span> <span class="nav-text">hybrid_images函数的编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI设计"><span class="nav-number">2.2.</span> <span class="nav-text">GUI设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI关键代码"><span class="nav-number">2.3.</span> <span class="nav-text">GUI关键代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行程序"><span class="nav-number">2.4.</span> <span class="nav-text">运行程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#paper链接"><span class="nav-number">3.</span> <span class="nav-text">paper链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GeekMonKey</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ymhou"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
