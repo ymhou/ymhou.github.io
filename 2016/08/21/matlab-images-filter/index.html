@@ -84,19 +84,25 @@
 
 
 
-<meta name="description" content="理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h(i,j)=1;        else">
+<meta name="description" content="同学那里copy来的代码，仅供使用时参考
+
+理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="几种滤波器Matlab程序">
+<meta property="og:title" content="浅尝图像处理——几种滤波器Matlab程序">
 <meta property="og:url" content="http://ymhou.github.com/2016/08/21/matlab-images-filter/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h(i,j)=1;        else">
+<meta property="og:description" content="同学那里copy来的代码，仅供使用时参考
+
+理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/51779946.jpg">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/57515885.jpg">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/86168309.jpg">
-<meta property="og:updated_time" content="2016-08-21T11:52:19.505Z">
+<meta property="og:updated_time" content="2016-08-21T11:54:46.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="几种滤波器Matlab程序">
-<meta name="twitter:description" content="理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h(i,j)=1;        else">
+<meta name="twitter:title" content="浅尝图像处理——几种滤波器Matlab程序">
+<meta name="twitter:description" content="同学那里copy来的代码，仅供使用时参考
+
+理想低通滤波器1234567891011121314151617M=256;N=256;d0=50;m=fix(M/2);n=fix(N/2);%h=zeros(256,256);for i=1:M    for j=1:N        d=sqrt((i-m)^2+(j-n)^2);        if(d&amp;lt;=d0)            h">
 <meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/51779946.jpg">
 
 
@@ -115,7 +121,7 @@
   };
 </script>
 
-  <title> 几种滤波器Matlab程序 | GeekMonKey's Blog </title>
+  <title> 浅尝图像处理——几种滤波器Matlab程序 | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +281,7 @@
             
             
               
-                几种滤波器Matlab程序
+                浅尝图像处理——几种滤波器Matlab程序
               
             
           </h1>
@@ -341,8 +347,11 @@
       
 
       
-        <a id="more"></a>
+        <blockquote>
+<p>同学那里copy来的代码，仅供使用时参考</p>
+</blockquote>
 <h2 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">M=<span class="number">256</span>;</span><br><span class="line">N=<span class="number">256</span>;</span><br><span class="line">d0=<span class="number">50</span>;</span><br><span class="line">m=<span class="built_in">fix</span>(M/<span class="number">2</span>);</span><br><span class="line">n=<span class="built_in">fix</span>(N/<span class="number">2</span>);</span><br><span class="line"><span class="comment">%h=zeros(256,256);</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:M</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:N</span><br><span class="line">        d=<span class="built_in">sqrt</span>((<span class="built_in">i</span>-m)^<span class="number">2</span>+(<span class="built_in">j</span>-n)^<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span>(d&lt;=d0)</span><br><span class="line">            h(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            h(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">mesh(h)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/51779946.jpg" alt=""></p>
 <h2 id="巴特沃斯低通滤波器"><a href="#巴特沃斯低通滤波器" class="headerlink" title="巴特沃斯低通滤波器"></a>巴特沃斯低通滤波器</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">clear;</span><br><span class="line">M=<span class="number">256</span>;</span><br><span class="line">N=<span class="number">256</span>;</span><br><span class="line">d0=<span class="number">50</span>;</span><br><span class="line">n=<span class="number">2</span>;</span><br><span class="line">m=<span class="built_in">fix</span>(M/<span class="number">2</span>);</span><br><span class="line">n=<span class="built_in">fix</span>(N/<span class="number">2</span>);</span><br><span class="line"><span class="comment">%h=zeros(256,256);</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:M</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:N</span><br><span class="line">        d=<span class="built_in">sqrt</span>((<span class="built_in">i</span>-m)^<span class="number">2</span>+(<span class="built_in">j</span>-n)^<span class="number">2</span>);</span><br><span class="line">        h(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">1</span>/(<span class="number">1</span>+<span class="number">0.414</span>*(d/d0)^(<span class="number">2</span>*<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">mesh(h)</span><br><span class="line">axis off</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-21/57515885.jpg" alt=""></p>
@@ -439,7 +448,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/08/21/matlab-images-filter/"
-           data-title="几种滤波器Matlab程序" data-url="http://ymhou.github.com/2016/08/21/matlab-images-filter/">
+           data-title="浅尝图像处理——几种滤波器Matlab程序" data-url="http://ymhou.github.com/2016/08/21/matlab-images-filter/">
       </div>
     
   </div>
