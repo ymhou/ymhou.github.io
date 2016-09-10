@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WebAPI,ASP.NET,EntityFramework," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近对之前设备监控项目中所用的ASP.NET Web API技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的REST风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。
+前言什么是Web APIWeb API是一个比较宽泛的概念，这里我们提到W">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET Web API 入门实战(1)--开篇">
+<meta property="og:url" content="http://ymhou.github.com/2016/09/10/aspnet-webapi-1/index.html">
+<meta property="og:site_name" content="GeekMonKey's Blog">
+<meta property="og:description" content="最近对之前设备监控项目中所用的ASP.NET Web API技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的REST风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。
+前言什么是Web APIWeb API是一个比较宽泛的概念，这里我们提到W">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/11200516.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/27166775.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/48133377.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/50738687.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/92529123.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/15825146.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/30174120.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/96419558.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/49546381.jpg">
+<meta property="og:updated_time" content="2016-09-10T07:55:21.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ASP.NET Web API 入门实战(1)--开篇">
+<meta name="twitter:description" content="最近对之前设备监控项目中所用的ASP.NET Web API技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的REST风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。
+前言什么是Web APIWeb API是一个比较宽泛的概念，这里我们提到W">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/11200516.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6291954834828428000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> ASP.NET Web API 入门实战(1)--开篇 | GeekMonKey's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">GeekMonKey's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">永远年轻，永远热泪盈眶…</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/笔记/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            笔记
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-copy">
+          <a href="/categories/转载/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-copy"></i> <br />
+            
+            转载
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ASP.NET Web API 入门实战(1)--开篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-10T15:48:06+08:00" content="2016-09-10">
+              2016-09-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/10/aspnet-webapi-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/10/aspnet-webapi-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近对之前设备监控项目中所用的<code>ASP.NET Web API</code>技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的<code>REST</code>风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么是Web-API"><a href="#什么是Web-API" class="headerlink" title="什么是Web API"></a>什么是Web API</h3><p>Web API是一个比较宽泛的概念，这里我们提到Web API特指ASP.NET Web API。</p>
+<p>官方定义如下，强调两个关键点，即可以对接各种客户端（浏览器，移动设备），构建http服务的框架。Web API利用Http协议的各个方面来表达服务(例如 URI/request response header/caching/versioning/content format)，因此就省掉很多配置。</p>
+<p>利用<code>ASP.NET Web API</code>我们可以很轻松的构建<code>REST</code>风格的服务。</p>
+<p>Web API在ASP.NET完整框架中地位如下图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/11200516.jpg" alt=""><br><a id="more"></a></p>
+<h3 id="Web-API功能简介"><a href="#Web-API功能简介" class="headerlink" title="Web API功能简介"></a>Web API功能简介</h3><ol>
+<li><p>支持基于Http verb (GET, POST, PUT, DELETE)的CRUD (create, retrieve, update, delete)操作，通过不同的http动作表达不同的含义，这样就不需要暴露多个API来支持这些基本操作。</p>
+</li>
+<li><p>请求的回复通过Http Status Code表达不同含义，并且客户端可以通过Accept header来与服务器协商格式，例如你希望服务器返回JSON格式还是XML格式。</p>
+</li>
+<li><p>请求的回复格式支持 JSON，XML，并且可以扩展添加其他格式。</p>
+</li>
+<li><p>原生支持OData。</p>
+</li>
+<li><p>支持Self-host或者IIS host。</p>
+</li>
+<li><p>支持大多数MVC功能，例如Routing/Controller/Action Result/Filter/Model Builder/IOC Container/Dependency Injection。</p>
+</li>
+</ol>
+<h3 id="REST风格服务简介"><a href="#REST风格服务简介" class="headerlink" title="REST风格服务简介"></a>REST风格服务简介</h3><p>REST表示表述性状态转移，它代表的是运行在HTTP上的一个简单的无状态的架构，每一个唯一URL代表一个资源。在创建RESTful服务时，应遵循四个基本的设计原则：</p>
+<ol>
+<li><p>使用HTTP方法（动词），使用统一的方式来获取资源（交互的统一接口），即检索资源使用GET，创建资源使用POST，  更新资源使用PUT / PATCH，删除资源使用DELETE。</p>
+</li>
+<li><p>与资源的交互是无状态的， 因此由客户端发起的每个请求应当包括HTTP请求的所有参数，上下文信息和所需服务器返回数据数据类型等。           </p>
+</li>
+<li><p>资源标识应通过URI来定义，简单来说应该是只使用URI来完成服务器与客户端和资源之间的交互。这些URI可以看作一个RESTful服务提供的接口。</p>
+</li>
+<li><p>支持JSON或/和XML等多种格式作为数据传输格式。</p>
+</li>
+</ol>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>笔者所用的开发环境如下：</p>
+<ol>
+<li>操作系统：Windows 10 ，64位</li>
+<li>IDE：Visual Studio 2013</li>
+<li>数据库：SqlServer 2012</li>
+</ol>
+<p>各位小伙伴可以根据自己的需求选用不同的IDE和数据库，IDE强烈推荐VS2013以上的版本，以免掉坑。</p>
+<h2 id="涉及技术"><a href="#涉及技术" class="headerlink" title="涉及技术"></a>涉及技术</h2><p>在我们的实例中用到了：</p>
+<ol>
+<li>SQL Server数据库保存数据</li>
+<li>Web API提供REST风格的服务</li>
+<li>ORM映射采用的是Entity Framework的Code First开发方式</li>
+<li>Vue.js解析Wen API返回的数据，对数据的双向绑定也会做一个简单的介绍</li>
+</ol>
+<h2 id="创建Web-API项目"><a href="#创建Web-API项目" class="headerlink" title="创建Web API项目"></a>创建Web API项目</h2><p>打开VS，新建项目，创建ASP.NET Web 应用程序，创建相应的解决方案，如下图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/27166775.jpg" alt=""></p>
+<p>选择模板为<code>Web API</code>，我们可以看到<code>MVC</code>和<code>Web API</code>两项已经默认打勾，<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/48133377.jpg" alt=""><br>作为简单的 ASP.NET Web API 入门项目，我们在这里先不涉及身份认证，因此，点击右侧的“更改身份认证”，我们选择“无身份认证”，如下图所示：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/50738687.jpg" alt=""></p>
+<p>就这样，一个Web API项目就创建好了，不得不感叹 VS 是宇宙最强大的 IDE ，微软出的东西就是简单易用。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/92529123.jpg" alt=""></p>
+<p>看一下代码结构，是典型的MVC，我们可以看到在<code>Controller</code>文件夹中有两个自动生成的控制器类，供我们参考：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/15825146.jpg" alt=""></p>
+<p>在<code>ValuesController.cs</code>中，<code>ValuesController</code>继承了<code>ApiController</code>类，提供了<code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code>方法，为了让示例简单化，values值被存储在控制器类中的固定数组中。当然，在实际应用程序中，你可能想要查询数据库或使用其他外部数据源，我们将会在下面的部分进行介绍。代码如下：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ValuesController</span> : <span class="title">ApiController</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// GET api/values</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IEnumerable&lt;<span class="keyword">string</span>&gt; <span class="title">Get</span>(<span class="params"></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">string</span>[] &#123; <span class="string">"value1"</span>, <span class="string">"value2"</span> &#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// GET api/values/5</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Get</span>(<span class="params"><span class="keyword">int</span> id</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"value"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// POST api/values</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Post</span>(<span class="params">[FromBody]<span class="keyword">string</span> <span class="keyword">value</span></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// PUT api/values/5</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Put</span>(<span class="params"><span class="keyword">int</span> id, [FromBody]<span class="keyword">string</span> <span class="keyword">value</span></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// DELETE api/values/5</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Delete</span>(<span class="params"><span class="keyword">int</span> id</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>控制器定义了两个返回value值的方法：</p>
+<ol>
+<li>IEnumerable<string> Get()方法将整个列表作为IEnumerable类型返回。</string></li>
+<li>Get(int id)方法通过它的ID来查找单个value值。</li>
+</ol>
+<p>没错，你已经有一个可以使用的web API了。控制器上的每个方法都对应一个或多个URI，我们先尝试调用一下Web API，点击启动调试，可以看到项目的主页是基于Boonstrap的。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/30174120.jpg" alt=""></p>
+<p>调用Web API，控制器方法和对应的URI如下：<br>| Controlle Method       | URI           |<br>| ————- |:————-:|<br>| IEnumerable<string> Get()     | api/values |<br>| string Get(int id)     | api/values/id      |  </string></p>
+<p>调用结果如下图（所用浏览器为Chrome，使用IE核浏览器会提示保存Json文件）：<br>1.调用<code>api/values</code><br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/96419558.jpg" alt=""></p>
+<p>2.调用<code>api/values/2</code><br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/49546381.jpg" alt=""></p>
+<p>上面调用Web API返回的格式<code>XML</code>格式的，后边的部分我会介绍如何强制返回Json格式。</p>
+<p>下面将具体介绍如何创建数据实体并运用Entity Framework与数据库进行交流。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://7xv676.com1.z0.glb.clouddn.com/1465308808.png" alt="GeekMonKey WeChat Pay"/>
+          <p>订阅我的博客</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xv676.com1.z0.glb.clouddn.com/mmqrcode1465308879044.png" alt="GeekMonKey Alipay"/>
+          <p>加我微信私聊</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WebAPI/" rel="tag">#WebAPI</a>
+          
+            <a href="/tags/ASP-NET/" rel="tag">#ASP.NET</a>
+          
+            <a href="/tags/EntityFramework/" rel="tag">#EntityFramework</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/01/sep-article/" rel="next" title="九月随笔">
+                <i class="fa fa-chevron-left"></i> 九月随笔
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/10/aspnet-webapi-2/" rel="prev" title="ASP.NET Web API 入门实战(2)--处理数据">
+                ASP.NET Web API 入门实战(2)--处理数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/10/aspnet-webapi-1/"
+           data-title="ASP.NET Web API 入门实战(1)--开篇" data-url="http://ymhou.github.com/2016/09/10/aspnet-webapi-1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xv676.com1.z0.glb.clouddn.com/JPEG_20160527_140907_-206264615%20(1).jpg"
+               alt="GeekMonKey" />
+          <p class="site-author-name" itemprop="name">GeekMonKey</p>
+          <p class="site-description motion-element" itemprop="description">好记性不如烂笔头</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ymhou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=29143205" target="_blank" title="网易云音乐">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  网易云音乐
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/a0e33186e328/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:dl_hym@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://geekmonkey.dzxs-dl.com" title="极客猴儿" target="_blank">极客猴儿</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yjercou.github.io/" title="Yang Jie" target="_blank">Yang Jie</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Web-API"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Web API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-API功能简介"><span class="nav-number">1.2.</span> <span class="nav-text">Web API功能简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REST风格服务简介"><span class="nav-number">1.3.</span> <span class="nav-text">REST风格服务简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境"><span class="nav-number">2.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#涉及技术"><span class="nav-number">3.</span> <span class="nav-text">涉及技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Web-API项目"><span class="nav-number">4.</span> <span class="nav-text">创建Web API项目</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GeekMonKey</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ymhou"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

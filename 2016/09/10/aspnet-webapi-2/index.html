@@ -1,0 +1,790 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WebAPI,ASP.NET,EntityFramework," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="创建数据项目为了给后续的项目开发提供一个层次分明的代码结构，这里我们在解决方案下新建一个数据项目WebAPIData。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET Web API 入门实战(2)--处理数据">
+<meta property="og:url" content="http://ymhou.github.com/2016/09/10/aspnet-webapi-2/index.html">
+<meta property="og:site_name" content="GeekMonKey's Blog">
+<meta property="og:description" content="创建数据项目为了给后续的项目开发提供一个层次分明的代码结构，这里我们在解决方案下新建一个数据项目WebAPIData。">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/5469399.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/10979706.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/89594695.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/20120014.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/1775813.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/99034161.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/88769136.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/88769136.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/65231972.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/15310326.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/93376945.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/35465785.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/25589511.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/353765.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/33032962.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/42209247.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/58471704.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/58471704.jpg">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/40333597.jpg">
+<meta property="og:updated_time" content="2016-09-10T07:58:59.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ASP.NET Web API 入门实战(2)--处理数据">
+<meta name="twitter:description" content="创建数据项目为了给后续的项目开发提供一个层次分明的代码结构，这里我们在解决方案下新建一个数据项目WebAPIData。">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/5469399.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6291954834828428000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> ASP.NET Web API 入门实战(2)--处理数据 | GeekMonKey's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">GeekMonKey's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">永远年轻，永远热泪盈眶…</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/笔记/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            笔记
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-copy">
+          <a href="/categories/转载/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-copy"></i> <br />
+            
+            转载
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ASP.NET Web API 入门实战(2)--处理数据
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-10T15:48:13+08:00" content="2016-09-10">
+              2016-09-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/10/aspnet-webapi-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/10/aspnet-webapi-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="创建数据项目"><a href="#创建数据项目" class="headerlink" title="创建数据项目"></a>创建数据项目</h2><p>为了给后续的项目开发提供一个层次分明的代码结构，这里我们在解决方案下新建一个数据项目<code>WebAPIData</code>。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/5469399.jpg" alt=""><br><a id="more"></a><br>选择控制台应用程序，如图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/10979706.jpg" alt=""></p>
+<p>在<code>WebAPIData</code>项目下新建三个文件夹<code>Entities</code>、<code>Mappers</code>、<code>Migrations</code>,将会分别存放数据实体类、数据映射配置以及数据迁移配置；删除自动生成的<code>Program.cs</code>类。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/89594695.jpg" alt=""></p>
+<p>下面我们介绍如何运用Entity Framework生成数据表。</p>
+<p>在<code>Entities</code>文件夹下新建实体类<code>Student.cs</code>，我们需求的字段的姓名、学号、班级、电话，代码如下:<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> ID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> StuID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> Class &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> Phone &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>Mappers</code>文件夹中新建<code>StudentMapper,cs</code>类，我们将在该类中配置数据表的字段约束。在此，我们需要引用到Entity Framework组件，如下图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/20120014.jpg" alt=""><br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/1775813.jpg" alt=""><br>引用完成后，我们可以看到<code>Entity Framework</code>和<code>Entity Framework.SqlServer</code>包含到引用中。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/99034161.jpg" alt=""></p>
+<p><code>StudentMapper,cs</code>类中的代码如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Data.Entity.ModelConfiguration;</span><br><span class="line">using WebAPIData.Entities;</span><br><span class="line">using System.ComponentModel.DataAnnotations.Schema;</span><br><span class="line"></span><br><span class="line">namespace WebAPIData.Mappers</span><br><span class="line">&#123;</span><br><span class="line">    class StudentMapper:EntityTypeConfiguration&lt;Student&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        public StudentMapper()</span><br><span class="line">        &#123;</span><br><span class="line">            this.ToTable("Student");</span><br><span class="line"></span><br><span class="line">            this.HasKey(c =&gt; c.ID);   //主键</span><br><span class="line">            this.Property(c =&gt; c.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);  //主键自增长</span><br><span class="line">            this.Property(c =&gt; c.ID).IsRequired();</span><br><span class="line"></span><br><span class="line">            this.Property(c =&gt; c.Name).IsRequired();     //字段非空</span><br><span class="line">            this.Property(c =&gt; c.Name).HasMaxLength(10);  //设定字段最大长度</span><br><span class="line"></span><br><span class="line">            this.Property(c =&gt; c.StuID).IsRequired();</span><br><span class="line">            this.Property(c =&gt; c.StuID).HasMaxLength(20);</span><br><span class="line"></span><br><span class="line">            this.Property(c =&gt; c.Class).IsOptional();     //字段可以为空</span><br><span class="line"></span><br><span class="line">            this.Property(c =&gt; c.Phone).IsRequired();</span><br><span class="line">            this.Property(c =&gt; c.Phone).HasMaxLength(20);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Code First存在利用数据属性DataAnnotation和Fluent API两种配置数据库映射的方式。DataAnnotation配置方式是将与数据库映射相关的配置标签加到定义实体和值对象的类和类中的属性上，Fluent API是通过在继承DbContext类中定义数据库配置的方式的。</p>
+<p>在这里我们采用Fluent API的方式，因为我们后续的开发会涉及到主外键配置以及一对一、多对一、一对多、多对都的映射关系，采用Fluent API方式可以保证我们结构清晰。DataAnnotation配置数据库映射的例子如下，在此我们不再赘述。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Required]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>WebAPIData</code>下新建<code>WebAPIContest.cs</code>类,进行相应的配置，作为数据的上下文类，代码如下：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> WebAPIData.Entities;</span><br><span class="line"><span class="keyword">using</span> WebAPIData.Mappers;</span><br><span class="line"><span class="keyword">using</span> System.Data.Entity;</span><br><span class="line"><span class="keyword">using</span> WenAPIData.Migrations;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">WebAPIData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     * 1.把我们定义的POCO类作为DBSet的属性对外公开，这意味着每一个POCO类都将被转化为数据库中的表</span><br><span class="line">       2.重写OnModelCreating方法将我们为POCO类自定义的映射规则添加到DbModelBuilder配置中</span><br><span class="line">     * </span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">WebAPIContext</span>:<span class="title">DbContext</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">WebAPIContext</span>(<span class="params"></span>)</span><br><span class="line">            : <span class="title">base</span>(<span class="params"><span class="string">"WebAPIConnection"</span></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            Configuration.ProxyCreationEnabled = <span class="literal">false</span>;</span><br><span class="line">            Configuration.LazyLoadingEnabled = <span class="literal">false</span>;       <span class="comment">//延时加载</span></span><br><span class="line"></span><br><span class="line">            Database.SetInitializer(<span class="keyword">new</span> MigrateDatabaseToLatestVersion&lt;WebAPIContext, Configuration&gt;());</span><br><span class="line">            <span class="comment">//为数据库配置初始化和迁移策略，如果模型的属性被改变（添加了新的属性），就把数据库迁移到最新版本。</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> IDbSet&lt;Student&gt; Students &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnModelCreating</span>(<span class="params">DbModelBuilder modelBuilder</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            modelBuilder.Configurations.Add(<span class="keyword">new</span> StudentMapper());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">base</span>.OnModelCreating(modelBuilder);</span><br><span class="line">        &#125;</span><br><span class="line">              </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>Migrations</code>文件夹下新建<code>Configuration.cs</code>文件，在此将进行数据库的迁移配置，可以在<code>Entity Framework</code>使用Code First Migration来用测试数据建立数据库。代码如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">namespace WenAPIData.Migrations</span><br><span class="line">&#123;</span><br><span class="line">    using WebAPIData.Entities;</span><br><span class="line">    using System;</span><br><span class="line">    using System.Data.Entity;</span><br><span class="line">    using System.Data.Entity.Migrations;</span><br><span class="line">    using System.Linq;</span><br><span class="line"></span><br><span class="line">    internal sealed class Configuration : DbMigrationsConfiguration&lt;WebAPIData.WebAPIContext&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        public Configuration()</span><br><span class="line">        &#123;</span><br><span class="line">            /**</span><br><span class="line">           * 在构造函数中，我们设置AutomaticMigrationsEnabled 属性为true，</span><br><span class="line">           * 那么就意味着EF会为我们自动迁移数据库而不考虑版本问题。</span><br><span class="line">           * 同时我们把AutomaticMigrationDataLossAllowed属性也设为true但这样做在开发环境中是很危险的，</span><br><span class="line">           * 因为如果这个属性设为false时，一旦数据库在自动迁移时发生数据丢失，那么就会抛出一个异常。</span><br><span class="line">           * </span><br><span class="line">           * */</span><br><span class="line">            AutomaticMigrationsEnabled = true;         </span><br><span class="line">            this.AutomaticMigrationDataLossAllowed = true;            </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        protected override void Seed(WebAPIData.WebAPIContext context)</span><br><span class="line">        &#123;</span><br><span class="line">            //可以在此部分添加数据实例</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到现在，我们数据实体已经配置完毕，下面我们在<code>WebAPIDemo</code>项目中，创建Web API控制器。首先，我们需要在<code>WebAPIDemo</code>加入对<code>WebAPIData</code>项目的引用。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/88769136.jpg" alt=""><br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/88769136.jpg" alt=""><br>应用完成后先编译下项目，我们将开始调用<code>WebAPIData</code>中的类。</p>
+<p>下面将添加支持CRUD（create, read, update 和 delete）的Web API 控制器。这些控制器使用Entity Framework来同数据库层交流，如图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/65231972.jpg" alt=""></p>
+<p>选择包含操作的Web API 2控制器（使用Entity Framework），如图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/15310326.jpg" alt=""></p>
+<p>在在Add Controller对话框中，执行以下操作：<br>1.在模型类下拉框中，选择Student类（如果你没有在下拉框中看到它，请确保已经编译了这个项目）<br>2.数据库上下文类选择WebAPIContext类</p>
+<p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/93376945.jpg" alt=""></p>
+<p>单击添加，控制器类就生成了，包含基本的<code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code>方法，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Data;</span><br><span class="line">using System.Data.Entity;</span><br><span class="line">using System.Data.Entity.Infrastructure;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Net;</span><br><span class="line">using System.Net.Http;</span><br><span class="line">using System.Web.Http;</span><br><span class="line">using System.Web.Http.Description;</span><br><span class="line">using WebAPIData;</span><br><span class="line">using WebAPIData.Entities;</span><br><span class="line"></span><br><span class="line">namespace WebAPIDemo.Controllers</span><br><span class="line">&#123;</span><br><span class="line">    public class StudentsController : ApiController</span><br><span class="line">    &#123;</span><br><span class="line">        private WebAPIContext db = new WebAPIContext();</span><br><span class="line"></span><br><span class="line">        // GET: api/Students</span><br><span class="line">        public IQueryable&lt;Student&gt; GetStudents()</span><br><span class="line">        &#123;</span><br><span class="line">            return db.Students;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // GET: api/Students/5</span><br><span class="line">        [ResponseType(typeof(Student))]</span><br><span class="line">        public IHttpActionResult GetStudent(int id)</span><br><span class="line">        &#123;</span><br><span class="line">            Student student = db.Students.Find(id);</span><br><span class="line">            if (student == null)</span><br><span class="line">            &#123;</span><br><span class="line">                return NotFound();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return Ok(student);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // PUT: api/Students/5</span><br><span class="line">        [ResponseType(typeof(void))]</span><br><span class="line">        public IHttpActionResult PutStudent(int id, Student student)</span><br><span class="line">        &#123;</span><br><span class="line">            if (!ModelState.IsValid)</span><br><span class="line">            &#123;</span><br><span class="line">                return BadRequest(ModelState);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (id != student.ID)</span><br><span class="line">            &#123;</span><br><span class="line">                return BadRequest();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            db.Entry(student).State = EntityState.Modified;</span><br><span class="line"></span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                db.SaveChanges();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (DbUpdateConcurrencyException)</span><br><span class="line">            &#123;</span><br><span class="line">                if (!StudentExists(id))</span><br><span class="line">                &#123;</span><br><span class="line">                    return NotFound();</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    throw;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return StatusCode(HttpStatusCode.NoContent);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // POST: api/Students</span><br><span class="line">        [ResponseType(typeof(Student))]</span><br><span class="line">        public IHttpActionResult PostStudent(Student student)</span><br><span class="line">        &#123;</span><br><span class="line">            if (!ModelState.IsValid)</span><br><span class="line">            &#123;</span><br><span class="line">                return BadRequest(ModelState);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            db.Students.Add(student);</span><br><span class="line">            db.SaveChanges();</span><br><span class="line"></span><br><span class="line">            return CreatedAtRoute(&quot;DefaultApi&quot;, new &#123; id = student.ID &#125;, student);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // DELETE: api/Students/5</span><br><span class="line">        [ResponseType(typeof(Student))]</span><br><span class="line">        public IHttpActionResult DeleteStudent(int id)</span><br><span class="line">        &#123;</span><br><span class="line">            Student student = db.Students.Find(id);</span><br><span class="line">            if (student == null)</span><br><span class="line">            &#123;</span><br><span class="line">                return NotFound();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            db.Students.Remove(student);</span><br><span class="line">            db.SaveChanges();</span><br><span class="line"></span><br><span class="line">            return Ok(student);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        protected override void Dispose(bool disposing)</span><br><span class="line">        &#123;</span><br><span class="line">            if (disposing)</span><br><span class="line">            &#123;</span><br><span class="line">                db.Dispose();</span><br><span class="line">            &#125;</span><br><span class="line">            base.Dispose(disposing);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private bool StudentExists(int id)</span><br><span class="line">        &#123;</span><br><span class="line">            return db.Students.Count(e =&gt; e.ID == id) &gt; 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然了，我们在实际的项目应用中需要重写需要的CRUD方法，因为本文是简单的demo实现，所以在此不再赘述控制器中CRUD方法的编写。</p>
+<p>下面将初始化我们的数据库，首先需要在<code>WebAPIDemo</code>中的<code>Web.config</code>文件增加数据库的连接字符串，如图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/35465785.jpg" alt=""><br>其中，字符串为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;connectionStrings&gt;</span><br><span class="line">    &lt;add name=&quot;WebAPIConnection&quot; connectionString=&quot;Data Source=DESKTOP-MDNON6P; User=name;Password=passwd;Initial Catalog=WebAPIDemo&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;</span><br><span class="line">  &lt;/connectionStrings&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的<code>WebAPIDemo</code>即为数据库名。</p>
+<p>配置完成后，使用Code First Migration来用测试数据建立数据库。在工具目录下选择NuGet程序包管理器，然后选择程序包管理控制台。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/25589511.jpg" alt=""><br>在包管理控制台窗口，输入以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Add-Migration Initial</span><br><span class="line">Update-Database</span><br></pre></td></tr></table></figure></p>
+<p>第一条命令生成用于创建数据库的代码，第二条命令执行那些代码。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/353765.jpg" alt=""></p>
+<p>数据库创建完成，我们打开SQL Server即可看到WebAPIDemo数据库。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/33032962.jpg" alt=""></p>
+<p>我们在数据表中随意插入一些数据进行测试，如图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/42209247.jpg" alt=""></p>
+<p>将<code>WebAPIDemo</code>设为启动项目，运行，我们调用Get方法进行测试，如图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/58471704.jpg" alt=""><br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/58471704.jpg" alt=""></p>
+<p>测试成功。可以看到上面调用API返回的格式是XML格式，我们将其转换为Json格式。在<code>WebAPIDemo</code>项目中<code>APP_Start</code>文件夹下的<code>WebapiConfig.cs</code>类中添加代码如下：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Web.Http;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">WebAPIDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">WebApiConfig</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Register</span>(<span class="params">HttpConfiguration config</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="comment">// Web API 配置和服务</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// Web API 路由</span></span><br><span class="line">            config.MapHttpAttributeRoutes();</span><br><span class="line"></span><br><span class="line">            config.Routes.MapHttpRoute(</span><br><span class="line">                name: <span class="string">"DefaultApi"</span>,</span><br><span class="line">                routeTemplate: <span class="string">"api/&#123;controller&#125;/&#123;id&#125;"</span>,</span><br><span class="line">                defaults: <span class="keyword">new</span> &#123; id = RouteParameter.Optional &#125;</span><br><span class="line">            );</span><br><span class="line"></span><br><span class="line">            <span class="comment">// New code:</span></span><br><span class="line">            <span class="keyword">var</span> json = config.Formatters.JsonFormatter;</span><br><span class="line">            json.SerializerSettings.PreserveReferencesHandling =</span><br><span class="line">                Newtonsoft.Json.PreserveReferencesHandling.Objects;           <span class="comment">//把Json格式化器设置为防止对对象引用</span></span><br><span class="line"></span><br><span class="line">            config.Formatters.Remove(config.Formatters.XmlFormatter);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再次调用Get方法进行测试，返回Json格式如下：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/40333597.jpg" alt=""></p>
+<p>至此，一个简单的从数据库获取数据封装成REST风格服务的WebAPI已经完成。</p>
+<p>下面将简单介绍下如何使用Vue.js解析Wen API返回的数据，也会对数据的双向绑定也会做一个简单的介绍。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://7xv676.com1.z0.glb.clouddn.com/1465308808.png" alt="GeekMonKey WeChat Pay"/>
+          <p>订阅我的博客</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xv676.com1.z0.glb.clouddn.com/mmqrcode1465308879044.png" alt="GeekMonKey Alipay"/>
+          <p>加我微信私聊</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WebAPI/" rel="tag">#WebAPI</a>
+          
+            <a href="/tags/ASP-NET/" rel="tag">#ASP.NET</a>
+          
+            <a href="/tags/EntityFramework/" rel="tag">#EntityFramework</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/10/aspnet-webapi-1/" rel="next" title="ASP.NET Web API 入门实战(1)--开篇">
+                <i class="fa fa-chevron-left"></i> ASP.NET Web API 入门实战(1)--开篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/10/aspnet-webapi-3/" rel="prev" title="aspnet webapi 3">
+                aspnet webapi 3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/10/aspnet-webapi-2/"
+           data-title="ASP.NET Web API 入门实战(2)--处理数据" data-url="http://ymhou.github.com/2016/09/10/aspnet-webapi-2/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xv676.com1.z0.glb.clouddn.com/JPEG_20160527_140907_-206264615%20(1).jpg"
+               alt="GeekMonKey" />
+          <p class="site-author-name" itemprop="name">GeekMonKey</p>
+          <p class="site-description motion-element" itemprop="description">好记性不如烂笔头</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ymhou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=29143205" target="_blank" title="网易云音乐">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  网易云音乐
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/a0e33186e328/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:dl_hym@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://geekmonkey.dzxs-dl.com" title="极客猴儿" target="_blank">极客猴儿</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yjercou.github.io/" title="Yang Jie" target="_blank">Yang Jie</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数据项目"><span class="nav-number">1.</span> <span class="nav-text">创建数据项目</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GeekMonKey</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ymhou"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
