@@ -85,19 +85,13 @@
 
 
 <meta name="description" content="最近对之前设备监控项目中所用的ASP.NET Web API技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的REST风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。
-
-ASP.NET Web API 入门实战系列：
-
-ASP.NET Web">
+前言什么是Web APIWeb API是一个比较宽泛的概念，这里我们提到W">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASP.NET Web API 入门实战(1)--开篇">
 <meta property="og:url" content="http://ymhou.github.com/2016/09/10/aspnet-webapi-1/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
 <meta property="og:description" content="最近对之前设备监控项目中所用的ASP.NET Web API技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的REST风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。
-
-ASP.NET Web API 入门实战系列：
-
-ASP.NET Web">
+前言什么是Web APIWeb API是一个比较宽泛的概念，这里我们提到W">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/11200516.jpg">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/27166775.jpg">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/48133377.jpg">
@@ -107,14 +101,11 @@ ASP.NET Web">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/30174120.jpg">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/96419558.jpg">
 <meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/49546381.jpg">
-<meta property="og:updated_time" content="2016-09-11T13:41:58.489Z">
+<meta property="og:updated_time" content="2016-09-11T13:48:29.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASP.NET Web API 入门实战(1)--开篇">
 <meta name="twitter:description" content="最近对之前设备监控项目中所用的ASP.NET Web API技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的REST风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。
-
-ASP.NET Web API 入门实战系列：
-
-ASP.NET Web">
+前言什么是Web APIWeb API是一个比较宽泛的概念，这里我们提到W">
 <meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-9-9/11200516.jpg">
 
 
@@ -360,14 +351,6 @@ ASP.NET Web">
 
       
         <p>最近对之前设备监控项目中所用的<code>ASP.NET Web API</code>技术做了一个小小的总结，写了一个简单的demo，以供师弟师妹们参考。这个系列可以作为ASP.NET Web API的入门实战，demo比较简单，但是我认为对于构建基于ASP.NET Web API的<code>REST</code>风格的服务提供了一个整体的思路，对于入门会有一定的帮助吧。</p>
-<blockquote>
-<p>ASP.NET Web API 入门实战系列：</p>
-<ol>
-<li><a href="http://beiyue.ren/2016/09/10/aspnet-webapi-1/" target="_blank" rel="external">ASP.NET Web API 入门实战(1)–开篇</a></li>
-<li><a href="http://beiyue.ren/2016/09/10/aspnet-webapi-2/" target="_blank" rel="external">ASP.NET Web API 入门实战(2)–处理数据</a></li>
-<li><a href="http://beiyue.ren/2016/09/11/aspnet-webapi-3/" target="_blank" rel="external">ASP.NET Web API 入门实战(3)–Vue.js创建单页应用程序</a></li>
-</ol>
-</blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么是Web-API"><a href="#什么是Web-API" class="headerlink" title="什么是Web API"></a>什么是Web API</h3><p>Web API是一个比较宽泛的概念，这里我们提到Web API特指ASP.NET Web API。</p>
 <p>官方定义如下，强调两个关键点，即可以对接各种客户端（浏览器，移动设备），构建http服务的框架。Web API利用Http协议的各个方面来表达服务(例如 URI/request response header/caching/versioning/content format)，因此就省掉很多配置。</p>
 <p>利用<code>ASP.NET Web API</code>我们可以很轻松的构建<code>REST</code>风格的服务。</p>
@@ -427,6 +410,14 @@ ASP.NET Web">
 <p>2.调用<code>api/values/2</code><br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-10/49546381.jpg" alt=""></p>
 <p>上面调用Web API返回的格式<code>XML</code>格式的，后边的部分我会介绍如何强制返回Json格式。</p>
 <p>下面将具体介绍如何创建数据实体并运用Entity Framework与数据库进行交流。</p>
+<blockquote>
+<p>ASP.NET Web API 入门实战系列：</p>
+<ol>
+<li><a href="http://beiyue.ren/2016/09/10/aspnet-webapi-1/" target="_blank" rel="external">ASP.NET Web API 入门实战(1)–开篇</a></li>
+<li><a href="http://beiyue.ren/2016/09/10/aspnet-webapi-2/" target="_blank" rel="external">ASP.NET Web API 入门实战(2)–处理数据</a></li>
+<li><a href="http://beiyue.ren/2016/09/11/aspnet-webapi-3/" target="_blank" rel="external">ASP.NET Web API 入门实战(3)–Vue.js创建单页应用程序</a></li>
+</ol>
+</blockquote>
 
       
     </div>
