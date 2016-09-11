@@ -1,0 +1,809 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WebAPI,ASP.NET,Vue.js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前面两节内容我们介绍了如何构建基于ASP.NET Web API的REST风格的服务，虽然demo比较简单，，而且仅仅建了一张数据表，没有涉及较多多的数据表映射关系，但是对于初学者来说这样给入门提供了一个整体思路，先易后难，慢慢上手，毕竟知易行难。
+
+ASP.NET Web API 入门实战系列：
+
+ASP.NET Web API 入门实战(1)–开篇
+ASP.NET Web API 入门实战(2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET Web API 入门实战(3)--Vue.js创建单页应用程序">
+<meta property="og:url" content="http://ymhou.github.com/2016/09/11/aspnet-webapi-3/index.html">
+<meta property="og:site_name" content="GeekMonKey's Blog">
+<meta property="og:description" content="前面两节内容我们介绍了如何构建基于ASP.NET Web API的REST风格的服务，虽然demo比较简单，，而且仅仅建了一张数据表，没有涉及较多多的数据表映射关系，但是对于初学者来说这样给入门提供了一个整体思路，先易后难，慢慢上手，毕竟知易行难。
+
+ASP.NET Web API 入门实战系列：
+
+ASP.NET Web API 入门实战(1)–开篇
+ASP.NET Web API 入门实战(2">
+<meta property="og:updated_time" content="2016-09-11T13:44:18.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ASP.NET Web API 入门实战(3)--Vue.js创建单页应用程序">
+<meta name="twitter:description" content="前面两节内容我们介绍了如何构建基于ASP.NET Web API的REST风格的服务，虽然demo比较简单，，而且仅仅建了一张数据表，没有涉及较多多的数据表映射关系，但是对于初学者来说这样给入门提供了一个整体思路，先易后难，慢慢上手，毕竟知易行难。
+
+ASP.NET Web API 入门实战系列：
+
+ASP.NET Web API 入门实战(1)–开篇
+ASP.NET Web API 入门实战(2">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6291954834828428000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> ASP.NET Web API 入门实战(3)--Vue.js创建单页应用程序 | GeekMonKey's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">GeekMonKey's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">永远年轻，永远热泪盈眶…</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/笔记/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            笔记
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/随笔/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-list"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-copy">
+          <a href="/categories/转载/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-copy"></i> <br />
+            
+            转载
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ASP.NET Web API 入门实战(3)--Vue.js创建单页应用程序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-11T15:48:17+08:00" content="2016-09-11">
+              2016-09-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/11/aspnet-webapi-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/11/aspnet-webapi-3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面两节内容我们介绍了如何构建基于ASP.NET Web API的<code>REST</code>风格的服务，虽然demo比较简单，，而且仅仅建了一张数据表，没有涉及较多多的数据表映射关系，但是对于初学者来说这样给入门提供了一个整体思路，先易后难，慢慢上手，毕竟知易行难。</p>
+<blockquote>
+<p>ASP.NET Web API 入门实战系列：</p>
+<ol>
+<li><a href="http://beiyue.ren/2016/09/10/aspnet-webapi-1/" target="_blank" rel="external">ASP.NET Web API 入门实战(1)–开篇</a></li>
+<li><a href="http://beiyue.ren/2016/09/10/aspnet-webapi-2/" target="_blank" rel="external">ASP.NET Web API 入门实战(2)–处理数据</a></li>
+<li><a href="http://beiyue.ren/2016/09/11/aspnet-webapi-3/" target="_blank" rel="external">ASP.NET Web API 入门实战(3)–Vue.js创建单页应用程序</a></li>
+</ol>
+</blockquote>
+<p>今天这篇文章主要是在前面已经构建好Web API 服务的基础上，介绍下如何使用当下较火的Vue.js来解析Web API，编写一个小界面，完成从后端API到前端展示数据的一个整体demo。<br><a id="more"></a></p>
+<h2 id="什么是Vue-js"><a href="#什么是Vue-js" class="headerlink" title="什么是Vue.js"></a>什么是Vue.js</h2><p>Vue.js 是用于构建交互式的 Web 界面的库。<br>Vue.js 提供了 MVVM 数据绑定和一个可组合的组件系统，具有简单、灵活的 API，让编写动态的UI界面变得轻松简单。</p>
+<h3 id="Vue-js-特点"><a href="#Vue-js-特点" class="headerlink" title="Vue.js 特点"></a>Vue.js 特点</h3><ul>
+<li>简洁： HTML 模板 + JSON 数据，再创建一个 Vue 实例，就这么简单。</li>
+<li>数据驱动： 自动追踪依赖的模板表达式和计算属性。</li>
+<li>组件化： 用解耦、可复用的组件来构造界面。</li>
+<li>轻量： ~24kb min+gzip，无依赖。</li>
+<li>快速： 精确有效的异步批量 DOM 更新。</li>
+<li>模块友好： 通过 NPM 或 Bower 安装，无缝融入你的工作流。</li>
+</ul>
+<h3 id="Vue-js-安装"><a href="#Vue-js-安装" class="headerlink" title="Vue.js 安装"></a>Vue.js 安装</h3><p>这里我们只介绍使用<code>&lt;script&gt;</code>标签引入，<code>NPM</code>安装和<code>Bower</code>安装小伙伴们可以参考网上的教程。<br>1.引用方法一：<br>直接下载并用 <script> 标签引入，Vue 会被注册为一个全局变量。<br>Vue.js 官网下载地址：<a href="http://vuejs.org/guide/installation.html">http://vuejs.org/guide/installation.html</a><br>在我们的demo中引用如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"~/Scripts/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>2.引用方法二：<br>使用其静态资源 CDN 库，在我们的demo中引用如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="什么是vue-resource"><a href="#什么是vue-resource" class="headerlink" title="什么是vue-resource"></a>什么是vue-resource</h2><p>vue-resource是Vue.js的一款插件，它可以通过XMLHttpRequest或JSONP发起请求并处理响应。</p>
+<h3 id="vue-resource特点"><a href="#vue-resource特点" class="headerlink" title="vue-resource特点"></a>vue-resource特点</h3><p>vue-resource插件具有以下特点：</p>
+<ul>
+<li>体积小：vue-resource非常小巧，在压缩以后只有大约12KB，服务端启用gzip压缩后只有4.5KB大小，这远比jQuery的体积要小得多。</li>
+<li>支持主流的浏览器：和Vue.js一样，vue-resource除了不支持IE 9以下的浏览器，其他主流的浏览器都支持。</li>
+<li>支持拦截器：拦截器是全局的，拦截器可以在请求发送前和发送请求后做一些处理。<br>拦截器在一些场景下会非常有用，比如请求发送前在headers中设置access_token，或者在请求失败时，提供共通的处理方式。</li>
+</ul>
+<h3 id="引入vue-resource"><a href="#引入vue-resource" class="headerlink" title="引入vue-resource"></a>引入vue-resource</h3><p>同Vue.js的引用一样，有两种引入方法：<br>1.引用方法一：<br>在我们的demo中引用如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"~/Scripts/vue-resource.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>2.引用方法二：<br>使用其静态资源 CDN 库，在我们的demo中引用如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>引入vue-resource后，可以基于全局的Vue对象使用http，也可以基于某个Vue实例使用http。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 基于全局Vue对象使用http</span><br><span class="line">Vue.http.get('/someUrl', [options]).then(successCallback, errorCallback);</span><br><span class="line">Vue.http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);</span><br><span class="line"></span><br><span class="line">// 在一个Vue实例内使用$http</span><br><span class="line">this.$http.get('/someUrl', [options]).then(successCallback, errorCallback);</span><br><span class="line">this.$http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);</span><br></pre></td></tr></table></figure></p>
+<p>上述的<code>then</code>方法的回调函数也有两种写法，第一种是传统的函数写法，第二种是更为简洁的ES 6的Lambda写法：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 传统写法</span><br><span class="line">this.$http.get('/someUrl', [options]).then(function(response)&#123;</span><br><span class="line">    // 响应成功回调</span><br><span class="line">&#125;, function(response)&#123;</span><br><span class="line">    // 响应错误回调</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Lambda写法</span><br><span class="line">this.$http.get('/someUrl', [options]).then((response) =&gt; &#123;</span><br><span class="line">    // 响应成功回调</span><br><span class="line">&#125;, (response) =&gt; &#123;</span><br><span class="line">    // 响应错误回调</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>在本demo中使用第二种Lambda写法总是报语法错误，所以仍然采用的是传统写法</strong></p>
+</blockquote>
+<p><strong>下面开始我们本demo前端界面构建的具体介绍。</strong>最终完成的效果如下图所示：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-11/70516207.jpg" alt=""></p>
+<h2 id="Views结构"><a href="#Views结构" class="headerlink" title="Views结构"></a>Views结构</h2><p>在<code>WebAPIDemo</code>项目的<code>Views</code>文件夹中，我们可以看到有<code>Home</code>文件夹、<code>Shared</code>文件夹、<code>_ViewStart.cshtml</code>文件，其中，<code>Home</code>文件夹放置网站主页文件，<code>Shared</code>文件夹放置模板文件，<code>_ViewStart.cshtml</code>进行初始化。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-11/15077523.jpg" alt=""></p>
+<p>在demo中使用的前端框架是<code>BootStrap</code>，这里我们将使用<code>Shared</code>文件夹下的模板文件，因此我们在<code>Home</code>文件夹下的html代码只需要写<code>body</code>部分；当然了，如果你不想使用模板文件，需要引入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@&#123;</span><br><span class="line">    Layout = null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="引入js文件"><a href="#引入js文件" class="headerlink" title="引入js文件"></a>引入js文件</h2><p>我们本次demo做一个单页界面作为主页，因此需要在Home文件下的<code>Index.cshtml</code>进行代码的编写，现在我们把<code>Index.cshtml</code>下的代码清空。</p>
+<p>首先引入js文件，这里我用CDN库的方式引入。需要注意的是引用版本问题，我发现这是一个大坑啊，引用版本不一样导致编译直接出错，所以大家可以采用下面的应用方法：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="编写html代码"><a href="#编写html代码" class="headerlink" title="编写html代码"></a>编写html代码</h2><p>在demo中我们实现的是取回Web API返回的值以表格的方式进行展示，同时能够进行添加和删除操作，具体实现的是<code>StudentController.cs</code>中的<code>get</code>、<code>post</code>、<code>delete</code>方法。代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-6 col-md-offset-3"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Vue.js demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-hover"</span> <span class="attr">v-cloak</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>学号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>班级<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>电话<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">v-for</span>=<span class="string">"student in students "</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>&#123;&#123;student.Name&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>&#123;&#123;student.StuID&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>&#123;&#123;student.Class&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>&#123;&#123;student.Phone&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-danger"</span> <span class="attr">v-on:click</span>=<span class="string">"deleteStudent(student)"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">legend</span>&gt;</span>添加学生信息：&#123;&#123; stu.Name &#125;&#125;<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-show</span>=<span class="string">"stu.ID"</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span>&gt;</span>ID<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"stu.ID"</span> <span class="attr">disabled</span>=<span class="string">"disabled"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">v-model</span>=<span class="string">"stu.Name"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>学号<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">v-model</span>=<span class="string">"stu.StuID"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>班级<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">v-model</span>=<span class="string">"stu.Class"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>电话<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">v-model</span>=<span class="string">"stu.Phone"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary btn-block"</span> <span class="attr">v-on:click</span>=<span class="string">"createStudent(student)"</span>&gt;</span>添加<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="编写js代码"><a href="#编写js代码" class="headerlink" title="编写js代码"></a>编写js代码</h2><p>vue-resource的请求API是按照REST风格设计的，它提供了7种请求API：</p>
+<ul>
+<li>get(url, [options])</li>
+<li>head(url, [options])</li>
+<li>delete(url, [options])</li>
+<li>jsonp(url, [options])</li>
+<li>post(url, [body], [options])</li>
+<li>put(url, [body], [options])</li>
+<li>patch(url, [body], [options])</li>
+</ul>
+<p>除了jsonp以外，另外6种的API名称是标准的HTTP方法。当服务端使用REST API时，客户端的编码风格和服务端的编码风格近乎一致，这可以减少前端和后端开发人员的沟通成本。<br>本demojs代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.http.options.emulateJSON = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">var</span> demo = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app'</span>,</span><br><span class="line">        data: &#123;                       </span><br><span class="line">            student: [&#123;</span><br><span class="line">                name: <span class="string">'ID'</span>,</span><br><span class="line">                isKey: <span class="literal">true</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                name: <span class="string">'Name'</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                name: <span class="string">'StuID'</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                name: <span class="string">'Class'</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                name: <span class="string">'Phone'</span></span><br><span class="line">            &#125;],</span><br><span class="line">            students: [],</span><br><span class="line"></span><br><span class="line">            apiUrl: <span class="string">'http://localhost:7874/api/students'</span>,</span><br><span class="line">            stu: &#123;&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        ready: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.getStudents()</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;            </span><br><span class="line">            getStudents: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.$http.get(<span class="keyword">this</span>.apiUrl, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">this</span>.$set(<span class="string">'students'</span>, data);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            createStudent: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> vm = <span class="keyword">this</span></span><br><span class="line">                vm.$http.post(vm.apiUrl, vm.stu)</span><br><span class="line">                    .then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">                        vm.$set(<span class="string">'stu'</span>, &#123;&#125;)</span><br><span class="line">                        vm.getStudents()</span><br><span class="line">               &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            deleteStudent: <span class="function"><span class="keyword">function</span>(<span class="params">student</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> vm = <span class="keyword">this</span></span><br><span class="line">                vm.$http.delete(<span class="keyword">this</span>.apiUrl + <span class="string">'/'</span> + student.ID)</span><br><span class="line">                    .then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>)  </span>&#123;</span><br><span class="line">                        vm.getStudents()</span><br><span class="line">                    &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>ok,至此代码已经写完了，运行查看一下效果，可以实现我们所需的功能。</p>
+<h2 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h2><p>最后我们简单说一下数据绑定，在上面的代码中，有如下代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">legend</span>&gt;</span>添加学生信息：&#123;&#123; stu.Name &#125;&#125;<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-show</span>=<span class="string">"stu.ID"</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>ID<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"stu.ID"</span> <span class="attr">disabled</span>=<span class="string">"disabled"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">v-model</span>=<span class="string">"stu.Name"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用v-model这个指令完成中间的底层逻辑，实现绑定的效果。改变其中的任何一层，另外一层都会改变。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-11/15998521.jpg" alt=""><br>以上实例中  会根据输入框 input(标签为“姓名”) 的改变而改变(v-model=”stu.Name”)。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-9-11/21983235.jpg" alt=""></p>
+<p>ok,本入门系列暂且告一段落，大家多多参考网上大牛的博客，只有自己趟过的坑才会牢牢记住，知道自己如何避免踩到同样的坑。</p>
+</script></p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://7xv676.com1.z0.glb.clouddn.com/1465308808.png" alt="GeekMonKey WeChat Pay"/>
+          <p>订阅我的博客</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xv676.com1.z0.glb.clouddn.com/mmqrcode1465308879044.png" alt="GeekMonKey Alipay"/>
+          <p>加我微信私聊</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WebAPI/" rel="tag">#WebAPI</a>
+          
+            <a href="/tags/ASP-NET/" rel="tag">#ASP.NET</a>
+          
+            <a href="/tags/Vue-js/" rel="tag">#Vue.js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/10/aspnet-webapi-2/" rel="next" title="ASP.NET Web API 入门实战(2)--处理数据">
+                <i class="fa fa-chevron-left"></i> ASP.NET Web API 入门实战(2)--处理数据
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/11/aspnet-webapi-3/"
+           data-title="ASP.NET Web API 入门实战(3)--Vue.js创建单页应用程序" data-url="http://ymhou.github.com/2016/09/11/aspnet-webapi-3/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xv676.com1.z0.glb.clouddn.com/JPEG_20160527_140907_-206264615%20(1).jpg"
+               alt="GeekMonKey" />
+          <p class="site-author-name" itemprop="name">GeekMonKey</p>
+          <p class="site-description motion-element" itemprop="description">好记性不如烂笔头</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ymhou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=29143205" target="_blank" title="网易云音乐">
+                  
+                    <i class="fa fa-fw fa-music"></i>
+                  
+                  网易云音乐
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/a0e33186e328/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:dl_hym@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://geekmonkey.dzxs-dl.com" title="极客猴儿" target="_blank">极客猴儿</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yjercou.github.io/" title="Yang Jie" target="_blank">Yang Jie</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Vue-js"><span class="nav-number">1.</span> <span class="nav-text">什么是Vue.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-js-特点"><span class="nav-number">1.1.</span> <span class="nav-text">Vue.js 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-js-安装"><span class="nav-number">1.2.</span> <span class="nav-text">Vue.js 安装</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GeekMonKey</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ymhou"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
