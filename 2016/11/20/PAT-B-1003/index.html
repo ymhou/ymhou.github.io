@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Docker,Shadowsocks," />
+  <meta name="keywords" content="PAT," />
 
 
 
@@ -84,21 +84,31 @@
 
 
 
-<meta name="description" content="搭建背景说出来你们可能不信，笔者本次搭建Shadowsocks服务器并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi">
+<meta name="description" content="试题描述“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。
+得到“答案正确”的条件是：
+
+字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；
+任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；
+如果 aPb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器">
-<meta property="og:url" content="http://ymhou.github.com/2016/08/20/docker-use1-shadowsocks/index.html">
+<meta property="og:title" content="PAT-B-1003.我要通过！">
+<meta property="og:url" content="http://ymhou.github.com/2016/11/20/PAT-B-1003/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="搭建背景说出来你们可能不信，笔者本次搭建Shadowsocks服务器并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi">
-<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/27500205.jpg">
-<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/97403250.jpg">
-<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/55576699.jpg">
-<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/65911524.jpg">
-<meta property="og:updated_time" content="2016-08-20T14:24:24.968Z">
+<meta property="og:description" content="试题描述“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。
+得到“答案正确”的条件是：
+
+字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；
+任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；
+如果 aPb">
+<meta property="og:updated_time" content="2016-11-20T03:32:22.202Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器">
-<meta name="twitter:description" content="搭建背景说出来你们可能不信，笔者本次搭建Shadowsocks服务器并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi">
-<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/27500205.jpg">
+<meta name="twitter:title" content="PAT-B-1003.我要通过！">
+<meta name="twitter:description" content="试题描述“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。
+得到“答案正确”的条件是：
+
+字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；
+任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；
+如果 aPb">
 
 
 
@@ -116,7 +126,7 @@
   };
 </script>
 
-  <title> Docker实战(1)——使用Docker快速搭建Shadowsocks服务器 | GeekMonKey's Blog </title>
+  <title> PAT-B-1003.我要通过！ | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +286,7 @@
             
             
               
-                Docker实战(1)——使用Docker快速搭建Shadowsocks服务器
+                PAT-B-1003.我要通过！
               
             
           </h1>
@@ -288,8 +298,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-20T22:22:38+08:00" content="2016-08-20">
-              2016-08-20
+            <time itemprop="dateCreated" datetime="2016-11-20T11:26:39+08:00" content="2016-11-20">
+              2016-11-20
             </time>
           </span>
 
@@ -318,8 +328,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/20/docker-use1-shadowsocks/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/20/docker-use1-shadowsocks/" itemprop="commentsCount"></span>
+                <a href="/2016/11/20/PAT-B-1003/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/PAT-B-1003/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,37 +352,17 @@
       
 
       
-        <h2 id="搭建背景"><a href="#搭建背景" class="headerlink" title="搭建背景"></a>搭建背景</h2><p><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/27500205.jpg" alt=""><br>说出来你们可能不信，笔者本次搭建<code>Shadowsocks服务器</code>并不是为了爬墙，仅仅是因为我在实验室一共有两台电脑都需要连接外网，一台笔记本，一台台式机（两台机器接同一局域网内的不同网口，都有独立公网IP）。但是学校的校园网账号是有限制的，就是我只能登录其中的一台去上网（<em>可能有人会说了，你既然有一台笔记本那么笔记本上不是有无线网卡吗，只要买个随身wifi插到台式机上不就可以给笔记本提供wifi信号进行上网了吗？……好吧，我就是不想给台式机上一直插一个那么丑的东西</em>），所以我这次搭建<code>Shadowsocks服务器</code>仅仅是为了让两台机器能够同时上网。<strong>当然了，需要搭建科学上网服务器的同学也可以按照下面的搭建步骤进行哦，前提是你需要有一台国外的Docker服务器。</strong></p>
-<p>最开始我是想采用Windows自带的服务搭建<code>VPN</code>服务器，把台式机当作服务器，把笔记本当作客户机，理论上就可以将笔记本接入台式机的<code>VPN服务</code>访问外网了，听起来蛮不错的吧。</p>
-<p>转念一想，我之前在实验室的云服务器上开过一台<code>Ubuntu</code>的虚拟机，何不在上面搭建一个<code>Shadowsocks服务器</code>呢（这样还有一个好处就是我出差或回家的时候仍然可以登录上SS到知网上下载论文了，哈哈）。当然了，虽然直接在<code>Ubuntu</code>上搭建SS服务器也挺简单的，但是这次想着还是结合下之前自学的东西吧，于是就引出了今天所写的<strong>使用Docker快速搭建Shadowsocks服务器</strong>。</p>
-<p>OK，废话少说，详细写下这个非常简单的搭建过程吧。<br><a id="more"></a></p>
-<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><ol>
-<li>Ubuntu主机一台</li>
-<li>安装Docker</li>
-<li>Shadowsocks客户端</li>
+        <h2 id="试题描述"><a href="#试题描述" class="headerlink" title="试题描述"></a>试题描述</h2><p>“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。</p>
+<p>得到“答案正确”的条件是：</p>
+<ol>
+<li>字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；</li>
+<li>任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；</li>
+<li>如果 aPbTc 是正确的，那么 aPbATca 也是正确的，其中 a, b, c 均或者是空字符串，或者是仅由字母 A 组成的字符串。</li>
 </ol>
-<h2 id="安装-Shadowsocks"><a href="#安装-Shadowsocks" class="headerlink" title="安装 Shadowsocks"></a>安装 Shadowsocks</h2><h3 id="拉取docker-shadowsocks镜像"><a href="#拉取docker-shadowsocks镜像" class="headerlink" title="拉取docker-shadowsocks镜像"></a>拉取docker-shadowsocks镜像</h3><p>拉取docker-shadowsocks镜像镜像安装，从 Docker Hub 仓库拉取命令如下（笔者未使用）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull oddrationale/docker-shadowsocks</span><br></pre></td></tr></table></figure></p>
-<p>在这里笔者通过DaoCloud提供Docker Hub Mirror服务进行镜像的加速下载（在<a href="http://www.jianshu.com/p/d896ec46db66" target="_blank" rel="external">《Docker学习笔记(2)–使用Docker Hub Mirror加速Docker官方镜像下载》</a>介绍过），命令如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dao pull oddrationale/docker-shadowsocks</span><br></pre></td></tr></table></figure></p>
-<p>安装完成后如下图所示：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/97403250.jpg" alt=""></p>
-<h3 id="配置docker-shadowsocks"><a href="#配置docker-shadowsocks" class="headerlink" title="配置docker-shadowsocks"></a>配置docker-shadowsocks</h3><p>输入如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 54285:54285 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 54285 -k yourpasswd -m aes-256-cfb</span><br></pre></td></tr></table></figure></p>
-<p>其中，</p>
-<ul>
-<li><code>-d</code>——容器启动后会进入后台</li>
-<li><code>-p（第一个）</code>——指定要映射的端口，使用的格式是<code>hostPort:containerPort</code>，即本地的 54285 端口映射到容器的 54285 端口</li>
-<li><code>-s</code>——服务器IP</li>
-<li><code>-p（第二个）</code>——代理端口</li>
-<li><code>yourpasswd</code>——你的密码</li>
-<li><code>-m</code>——加密方式</li>
-</ul>
-<p>检查一下 SS 是否已经安装成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure></p>
-<p>可以看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID        IMAGE                             COMMAND                  CREATED             STATUS              PORTS                      </span><br><span class="line">10ef831c1904        oddrationale/docker-shadowsocks   &quot;/usr/local/bin/ssser&quot;   4 seconds ago       Up 3 seconds        0.0.0.0:54285-&gt;54285/tcp</span><br></pre></td></tr></table></figure></p>
-<p>说明服务器端已经配置成功。</p>
-<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>下载Shadowsocks客户端，可以从 <a href="www.ishadowsocks.org">ISS</a> 网站进行下载。</p>
-<p>以 Shadowsocks for Windows 客户端 为例，安装好后添加服务器配置：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/55576699.jpg" alt=""></p>
-<p>填上 ip 地址，端口，密码，密码就是刚刚的 <code>yourpasswd</code>,点击确定。</p>
-<p>其实至此正常来说已经配置完毕了，但我这次毕竟不是配置科学上网，是要通过SS来访问Ubuntu进行正常上网的，因此在托盘中需要将<code>系统代理模式</code>修改为<code>全局代理</code>才能够正常上网。<br><img src="http://7xv676.com1.z0.glb.clouddn.com/16-8-20/65911524.jpg" alt=""></p>
-<p>OK，简单的几步就配置完毕了，在托盘中选择<code>启用系统代理</code>,嗯哼,笔记本可以正常上网了（而且走的是云服务器的校园网流量，不花钱的哟，好开心~）</p>
-
+<p>现在就请你为PAT写一个自动裁判程序，判定哪些字符串是可以获得“答案正确”的。<br>输入格式： 每个测试输入包含1个测试用例。第1行给出一个自然数n (&lt;10)，是需要检测的字符串个数。接下来每个字符串占一行，字符串长度不超过100，且不包含空格。</p>
+<p>输出格式：每个字符串的检测结果占一行，如果该字符串可以获得“答案正确”，则输出YES，否则输出NO。</p>
+<p>输入样例：<br>8<br>PAT<br>PAAT<br>AAPATAA<br>AAPAATAAAA<br>xPATx<br>PT<br>Whatever<br>APAAATAA<br>输出样例：<br>YES<br>YES<br>YES<br>YES<br>NO<br>NO<br>NO<br>NO<br><a id="more"></a></p>
+<h2 id="试题代码"><a href="#试题代码" class="headerlink" title="试题代码"></a>试题代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hym.PAT_B;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 这题主要难在题目的解读，如果将题目读懂这题就不是很难，这里我把题目作简单的分析。</span><br><span class="line"></span><br><span class="line"> 1、对于第一个条件，我们可以知道所输入字符串只能包括P,A,T三个字母，我们可以根据设置3个变量来统计这3个字母的数量如果3个字母数量之和不等于字符串长度那就有可能包含其它字母。</span><br><span class="line"></span><br><span class="line"> 2、条件2告诉我们的是在PAT左右两边的字符必须相等或为空或为A字符</span><br><span class="line"></span><br><span class="line"> 3、条件3是比较好理解的，意思就是说P，T之间如果增加一个字符A那么在T的右边就要添加与P左边相等的字符，这个字符的数量要根据P左边的字符来定。</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PAT_B_1003</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> n = scanner.nextInt();</span><br><span class="line">        String str[] = <span class="keyword">new</span> String[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            str[i] = scanner.next();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            System.out.println(StrTrueOrFalse(str[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">StrTrueOrFalse</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> NumA=<span class="number">0</span>,NumP=<span class="number">0</span>,NumT=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> PosP=<span class="number">0</span>,PosT=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">'A'</span>)&#123;</span><br><span class="line">                NumA++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">'P'</span>)&#123;</span><br><span class="line">                NumP++;</span><br><span class="line">                PosP=i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">'T'</span>)&#123;</span><br><span class="line">                NumT++;</span><br><span class="line">                PosT=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(NumA+NumP+NumT==s.length() &amp;&amp; NumA!=<span class="number">0</span> &amp;&amp; NumP==<span class="number">1</span> &amp;&amp; NumT==<span class="number">1</span> &amp;&amp; PosT-PosP&gt;<span class="number">1</span> &amp;&amp; PosP*(PosT-PosP-<span class="number">1</span>)==s.length()-PosT-<span class="number">1</span> )&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"YES"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"NO"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -414,9 +404,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag">#Docker</a>
-          
-            <a href="/tags/Shadowsocks/" rel="tag">#Shadowsocks</a>
+            <a href="/tags/PAT/" rel="tag">#PAT</a>
           
         </div>
       
@@ -425,16 +413,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/19/java-use-static/" rel="next" title="Java中的static使用">
-                <i class="fa fa-chevron-left"></i> Java中的static使用
+              <a href="/2016/11/20/PAT-B-1002/" rel="next" title="PAT-B-1002.写出这个数">
+                <i class="fa fa-chevron-left"></i> PAT-B-1002.写出这个数
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/21/matlab-images-filter/" rel="prev" title="浅尝图像处理——几种滤波器Matlab程序">
-                浅尝图像处理——几种滤波器Matlab程序 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/20/PAT-B-1004/" rel="prev" title="PAT-B-1004.成绩排名">
+                PAT-B-1004.成绩排名 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -464,8 +452,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/20/docker-use1-shadowsocks/"
-           data-title="Docker实战(1)——使用Docker快速搭建Shadowsocks服务器" data-url="http://ymhou.github.com/2016/08/20/docker-use1-shadowsocks/">
+      <div class="ds-thread" data-thread-key="2016/11/20/PAT-B-1003/"
+           data-title="PAT-B-1003.我要通过！" data-url="http://ymhou.github.com/2016/11/20/PAT-B-1003/">
       </div>
     
   </div>
@@ -612,7 +600,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建背景"><span class="nav-number">1.</span> <span class="nav-text">搭建背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前置条件"><span class="nav-number">2.</span> <span class="nav-text">前置条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Shadowsocks"><span class="nav-number">3.</span> <span class="nav-text">安装 Shadowsocks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉取docker-shadowsocks镜像"><span class="nav-number">3.1.</span> <span class="nav-text">拉取docker-shadowsocks镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置docker-shadowsocks"><span class="nav-number">3.2.</span> <span class="nav-text">配置docker-shadowsocks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端配置"><span class="nav-number">4.</span> <span class="nav-text">客户端配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#试题描述"><span class="nav-number">1.</span> <span class="nav-text">试题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#试题代码"><span class="nav-number">2.</span> <span class="nav-text">试题代码</span></a></li></ol></div>
             
           </div>
         </section>
