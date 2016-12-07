@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="极客猴儿, GeekMonkey" />
+  <meta name="keywords" content="opencv," />
 
 
 
@@ -84,15 +84,21 @@
 
 
 
-<meta name="description" content="好记性不如烂笔头">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GeekMonKey's Blog">
-<meta property="og:url" content="http://ymhou.github.com/tags/Docker/index.html">
+<meta name="description" content="做视频分析或者说监控行业用的相机，一般来说，有两种：（1）模拟相机；（2）数字相机；
+相机与PC的连接方式，可以简单的表述为下面的图：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV与相机的关系">
+<meta property="og:url" content="http://ymhou.github.com/2016/12/07/opencv-and-camera/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="好记性不如烂笔头">
+<meta property="og:description" content="做视频分析或者说监控行业用的相机，一般来说，有两种：（1）模拟相机；（2）数字相机；
+相机与PC的连接方式，可以简单的表述为下面的图：">
+<meta property="og:image" content="http://7xv676.com1.z0.glb.clouddn.com/public/16-12-7/65694429.jpg">
+<meta property="og:updated_time" content="2016-12-07T02:49:40.935Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GeekMonKey's Blog">
-<meta name="twitter:description" content="好记性不如烂笔头">
+<meta name="twitter:title" content="OpenCV与相机的关系">
+<meta name="twitter:description" content="做视频分析或者说监控行业用的相机，一般来说，有两种：（1）模拟相机；（2）数字相机；
+相机与PC的连接方式，可以简单的表述为下面的图：">
+<meta name="twitter:image" content="http://7xv676.com1.z0.glb.clouddn.com/public/16-12-7/65694429.jpg">
 
 
 
@@ -110,7 +116,7 @@
   };
 </script>
 
-  <title> 标签: Docker | GeekMonKey's Blog </title>
+  <title> OpenCV与相机的关系 | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,158 +255,174 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Docker
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/20/docker-use1-shadowsocks/" itemprop="url">
-              
-                <span itemprop="name">Docker实战(1)——使用Docker快速搭建Shadowsocks服务器</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-20T22:22:38+08:00"
-              content="2016-08-20" >
-          08-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/28/docker4-images/" itemprop="url">
-              
-                <span itemprop="name">Docker学习笔记(4)--镜像篇</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-28T15:06:32+08:00"
-              content="2016-07-28" >
-          07-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/27/docker3-what-the-image-container/" itemprop="url">
-              
-                <span itemprop="name">Docker学习笔记(3)--什么是Docker镜像、容器和仓库？</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-27T15:06:32+08:00"
-              content="2016-07-27" >
-          07-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/24/docker2-Docker-Hub-Mirror/" itemprop="url">
-              
-                <span itemprop="name">Docker学习笔记(2)--使用Docker Hub Mirror加速Docker官方镜像下载</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-24T15:06:32+08:00"
-              content="2016-07-24" >
-          07-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/24/docker1-Ubuntu16-04-Docker-install/" itemprop="url">
-              
-                <span itemprop="name">Docker学习笔记(1)--Docker安装(Ubuntu 16.04)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-24T15:03:10+08:00"
-              content="2016-07-24" >
-          07-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                OpenCV与相机的关系
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-07T10:46:06+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/07/opencv-and-camera/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/opencv-and-camera/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>做视频分析或者说监控行业用的相机，一般来说，有两种：（1）模拟相机；（2）数字相机；</p>
+<p>相机与PC的连接方式，可以简单的表述为下面的图：<br><img src="http://7xv676.com1.z0.glb.clouddn.com/public/16-12-7/65694429.jpg" alt=""><br><a id="more"></a><br>模拟相机，输出的是模拟信号，也就是电压的高低信号。这种相机，现在用在很多的监控场合，例如在银行，当你坐在柜台前的时候，你的头顶上一般会有一个相机对着你的，据笔者观察，其中的大部分，目前都属于模拟相机；这种模拟相机的输出一般可以通过AV信号线连接到电视上，也就是说，可以用一根信号线，把相机拍摄的图片用电视机显示出来。模拟相机还在马路边，小区门口的监控室（一般都是用这种相机）等场合见到。模拟相机得到的数据，在进入计算机进行保存、显示、处理之前，需要转换为数字信号（PC只能处理离散的数字信号）。所以，模拟相机在PC端，一般都有PCI接口的视频转接卡，这种视频转接卡，专业术语叫做“视频采集卡”。例如，海康视频采集卡；大华视频采集卡；天敏视频采集卡等，都属于这一类； 通过它，模拟相机的模拟信号就转换为数字信号。换句话说，就变成了JPG,BMP等格式的图片，进而就可以被PC来显示、处理了。</p>
+<p>数字相机，目前，常用的就只有RJ45接口和USB接口这两种形式，也有个别相机采用1394接口的。RJ45接口，也就是我们上网用的网线接口，USB接口不用说，相信大家聊QQ都用过。数字相机，可以直接生成JPG或者BMP格式的图片。不过，为了网络传输的快捷，一般都以MPEG或者h.264视频流的格式进行网络传输。一般来说，采用RJ45接口数字相机进行开发的时候，相机的出售方，会给你提供该相机的SDK，通过该SDK，你就可以获取相机发给PC端的网络数据包，通过解压该数据包（在相机SDK都提供），那么，你就获得了一帧一帧的JPG或者BMP格式的图片。如果相机的SDK最终提供给你的是JPG格式，那么，你还需要在内存里面把它解压为BMP格式，然后，才能用Opencv的iplimage格式进行处理。如果是BMP格式，直接赋值给IPLIMAGE就Ok了。另外，USB接口的数字相机（也就是我们平常聊QQ用的摄像头），可以通过直接调用opencv的函数（其实，内部是调用了windows的VFW）来获取iplimage格式的数据，剩下的，就是采用opencv进行处理了。。</p>
+<p>总结一下，相机只是一个图片数据获取工具，获取了图片之后，需要把这些图片“传递”给PC、DSP、ARM等处理终端，然后，在处理终端上，针对不同的需求，调用不同的OpenCV函数就能解决你的问题了。。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://7xv676.com1.z0.glb.clouddn.com/1465308808.png" alt="GeekMonKey WeChat Pay"/>
+          <p>订阅我的博客</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xv676.com1.z0.glb.clouddn.com/mmqrcode1465308879044.png" alt="GeekMonKey Alipay"/>
+          <p>加我微信私聊</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/opencv/" rel="tag">#opencv</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/01/PAT-B-1011-1015/" rel="next" title="PAT-B-1011~1015试题代码（Java）">
+                <i class="fa fa-chevron-left"></i> PAT-B-1011~1015试题代码（Java）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -408,6 +430,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/07/opencv-and-camera/"
+           data-title="OpenCV与相机的关系" data-url="http://ymhou.github.com/2016/12/07/opencv-and-camera/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -427,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://7xv676.com1.z0.glb.clouddn.com/JPEG_20160527_140907_-206264615%20(1).jpg"
@@ -535,6 +574,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -637,6 +687,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
