@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="极客猴儿, GeekMonkey" />
+  <meta name="keywords" content="Mybatis," />
 
 
 
@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="好记性不如烂笔头">
+<meta name="description" content="mybatis中sql的大于、小于等符号的写法，
+其实就是xml的特殊符号，因为它的配置就是xml，所以可以用下面这种写法转义
+&amp;amp;lt;          &amp;lt; 
+&amp;amp;gt;          &amp;gt;  
+&amp;amp;lt;&amp;amp;gt;   &amp;lt;&amp;gt;
+&amp;amp;amp;      &amp;amp; 
+&amp;amp;apos;      &amp;apos;
+&amp;amp;quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mybatis sql some rules">
+<meta property="og:title" content="Mybatis中sql的大于、小于等符号的写法">
 <meta property="og:url" content="http://ymhou.github.com/2017/03/03/mybatis-sql-some-rules/index.html">
 <meta property="og:site_name" content="GeekMonKey's Blog">
-<meta property="og:description" content="好记性不如烂笔头">
-<meta property="og:updated_time" content="2017-03-03T05:43:19.353Z">
+<meta property="og:description" content="mybatis中sql的大于、小于等符号的写法，
+其实就是xml的特殊符号，因为它的配置就是xml，所以可以用下面这种写法转义
+&amp;amp;lt;          &amp;lt; 
+&amp;amp;gt;          &amp;gt;  
+&amp;amp;lt;&amp;amp;gt;   &amp;lt;&amp;gt;
+&amp;amp;amp;      &amp;amp; 
+&amp;amp;apos;      &amp;apos;
+&amp;amp;quot;">
+<meta property="og:updated_time" content="2017-03-03T06:05:28.677Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mybatis sql some rules">
-<meta name="twitter:description" content="好记性不如烂笔头">
+<meta name="twitter:title" content="Mybatis中sql的大于、小于等符号的写法">
+<meta name="twitter:description" content="mybatis中sql的大于、小于等符号的写法，
+其实就是xml的特殊符号，因为它的配置就是xml，所以可以用下面这种写法转义
+&amp;amp;lt;          &amp;lt; 
+&amp;amp;gt;          &amp;gt;  
+&amp;amp;lt;&amp;amp;gt;   &amp;lt;&amp;gt;
+&amp;amp;amp;      &amp;amp; 
+&amp;amp;apos;      &amp;apos;
+&amp;amp;quot;">
 
 
 
@@ -111,7 +132,7 @@
   };
 </script>
 
-  <title> mybatis sql some rules | GeekMonKey's Blog </title>
+  <title> Mybatis中sql的大于、小于等符号的写法 | GeekMonKey's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -281,7 +302,7 @@
             
             
               
-                mybatis sql some rules
+                Mybatis中sql的大于、小于等符号的写法
               
             
           </h1>
@@ -298,6 +319,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -328,7 +368,16 @@
       
 
       
-        
+        <p>mybatis中sql的大于、小于等符号的写法，</p>
+<p>其实就是xml的特殊符号，因为它的配置就是xml，所以可以用下面这种写法转义</p>
+<pre><code>&amp;lt;          &lt; 
+&amp;gt;          &gt;  
+&amp;lt;&amp;gt;   &lt;&gt;
+&amp;amp;      &amp; 
+&amp;apos;      &apos;
+&amp;quot;      &quot;
+</code></pre><p>也可以使用<code>&lt;![CDATA[ ]]&gt;</code>符号进行说明，将此类符号不进行解析<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;![CDATA[ 这里写你的sql ]]&gt;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -367,6 +416,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mybatis/" rel="tag">#Mybatis</a>
+          
+        </div>
       
 
       
@@ -409,7 +464,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/03/03/mybatis-sql-some-rules/"
-           data-title="mybatis sql some rules" data-url="http://ymhou.github.com/2017/03/03/mybatis-sql-some-rules/">
+           data-title="Mybatis中sql的大于、小于等符号的写法" data-url="http://ymhou.github.com/2017/03/03/mybatis-sql-some-rules/">
       </div>
     
   </div>

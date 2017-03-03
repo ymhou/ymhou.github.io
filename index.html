@@ -284,7 +284,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/03/mybatis-sql-some-rules/" itemprop="url">
-                  mybatis sql some rules
+                  Mybatis中sql的大于、小于等符号的写法
                 </a>
               
             
@@ -302,6 +302,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -334,7 +353,16 @@
       
         
           
-            
+            <p>mybatis中sql的大于、小于等符号的写法，</p>
+<p>其实就是xml的特殊符号，因为它的配置就是xml，所以可以用下面这种写法转义</p>
+<pre><code>&amp;lt;          &lt; 
+&amp;gt;          &gt;  
+&amp;lt;&amp;gt;   &lt;&gt;
+&amp;amp;      &amp; 
+&amp;apos;      &apos;
+&amp;quot;      &quot;
+</code></pre><p>也可以使用<code>&lt;![CDATA[ ]]&gt;</code>符号进行说明，将此类符号不进行解析<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;![CDATA[ 这里写你的sql ]]&gt;</span><br></pre></td></tr></table></figure></p>
+
           
         
       
